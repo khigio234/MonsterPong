@@ -11,21 +11,21 @@ import android.graphics.Canvas;
 public class ObjectFather {
     float x,y;
     int Image;
-    int ballSizeX,ballSizeY;//cai này dùng để ddingj dạng khi vẽ Bitmap
-    Bitmap BallModify;//trái hình trong bitmap dc dùng để chỉnh sửa
-    Bitmap BallDraw;//trái hình trong bitmap dc dùng để vẽ
+    int SizeX,SizeY;//cai này dùng để ddingj dạng khi vẽ Bitmap
+    Bitmap ObjectModify;//trái hình trong bitmap dc dùng để chỉnh sửa
+    Bitmap ObjectDraw;//trái hình trong bitmap dc dùng để vẽ
     float xMax, xMin = 0, yMax, yMin=0;
     MainView view;
     public ObjectFather(){
 
     }
     public ObjectFather(int ballSizeX,int ballSizeY){
-        this.ballSizeX = ballSizeX;
-        this.ballSizeY = ballSizeY;
+        this.SizeX = ballSizeX;
+        this.SizeY = ballSizeY;
     }
     public ObjectFather(int ballSizeX,int ballSizeY,int Image){
-        this.ballSizeX = ballSizeX;
-        this.ballSizeY = ballSizeY;
+        this.SizeX = ballSizeX;
+        this.SizeY = ballSizeY;
         this.Image = Image;
     }
     public void setX(float x) {
@@ -44,20 +44,20 @@ public class ObjectFather {
         return y;
     }
 
-    public void setBallSizeY(int ballSizeY) {
-        this.ballSizeY = ballSizeY;
+    public void setSizeY(int ballSizeY) {
+        this.SizeY = ballSizeY;
     }
 
-    public int getBallSizeY() {
-        return ballSizeY;
+    public int getSizeY() {
+        return SizeY;
     }
 
-    public void setBallSizeX(int ballSizeX) {
-        this.ballSizeX = ballSizeX;
+    public void setSizeX(int ballSizeX) {
+        this.SizeX = ballSizeX;
     }
 
-    public int getBallSizeX() {
-        return ballSizeX;
+    public int getSizeX() {
+        return SizeX;
     }
 
     public void setImage(int image) {
@@ -72,7 +72,7 @@ public class ObjectFather {
         this.xMax = view.getWidth();
         this.yMax = view.getHeight();
         setBitmapFactory(view.getResources());
-        setScaledBitmap(this.ballSizeX,ballSizeY,false);
+        setScaledBitmap(this.SizeX,SizeY,false);
         this.view = view;
     }
 
@@ -81,26 +81,27 @@ public class ObjectFather {
     }
 
     public void setBitmapFactory(Resources resources){
-        this.BallModify = BitmapFactory.decodeResource(resources, this.getImage());
+        this.ObjectModify = BitmapFactory.decodeResource(resources, this.getImage());
     }
 
     public void setScaledBitmap(int width,int height,boolean fitler){
-        this.ballSizeX = width;
-        this.ballSizeY = height;
-        this.BallDraw = Bitmap.createScaledBitmap(this.BallModify, width, height, fitler);
+        this.SizeX = width;
+        this.SizeY = height;
+        this.ObjectDraw = Bitmap.createScaledBitmap(this.ObjectModify, width, height, fitler);
     }
 
-    public void setBallModify(Bitmap ballModify) {
-        BallModify = ballModify;
+    public void setObjectModify(Bitmap ObjectModify) {
+        ObjectModify = ObjectModify;
     }
 
-    public Bitmap getBallModify() {
-        return BallModify;
+    public Bitmap gettObjectModify() {
+        return ObjectModify;
     }
 
-    public void DrawBall(Canvas canvas){
+    public void Draw(Canvas canvas){
 //        Toast.makeText(this.view.getContext(),this.x+"- "+this.y,Toast.LENGTH_SHORT).show();
-        canvas.drawBitmap(this.BallDraw,this.x,this.y,null);
+        canvas.drawBitmap(this.ObjectDraw,this.x,this.y,null);
     }
 
 }
+
