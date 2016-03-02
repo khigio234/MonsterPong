@@ -13,8 +13,8 @@ import java.util.ArrayList;
 public class MainView extends View {
     //tạo 1 trái banh
     Ball ball;
-    float x =50,y=500;
-    float SpeedX = 14,SpeedY = 19;
+    float x =50,y=700;
+    float SpeedX = 10,SpeedY = 10;
     ArrayList<Boom> ArrBoom ;
     int BoomSizeX,BoomSizeY;
     boolean cfCreateBoom = true;
@@ -22,19 +22,12 @@ public class MainView extends View {
     Player player1,player2;
     public MainView(Context context){
         super(context);
-        ball = new Ball(50,50,R.drawable.ball,SpeedX,SpeedY);
-        BoomSizeX = 50;
-        BoomSizeY = 50;
-        ball.setX(x);
-        ball.setY(y);
         ArrBoom = new ArrayList<>();
     }
     @Override
     public void onDraw(Canvas canvas){
         //set hình nền
         this.setBackgroundResource(R.drawable.background);
-        //tạo ảnh cho trái banh
-        ball.setView(this);
         //vẽ bóng
         ball.DrawBall(canvas);
         player1.DrawPanddle(canvas);
@@ -61,12 +54,21 @@ public class MainView extends View {
     public boolean onTouchEvent(MotionEvent event){
         float gatBoomX = event.getX();
         float gatBoomY = event.getY();
-        if(gatBoomX>=(this.getWidth()-100)){
-            gatBoomX = this.getWidth()-100;
+
+        if(gatBoomX > player1.getX() && gatBoomX < player1.getX() + player1.getPanddleSizeX()
+                && gatBoomY > player1.getY() && gatBoomY < player1.getY() + player1.getPanddleSizeY() && event.getAction() == MotionEvent.ACTION_MOVE) {
+            if (gatBoomX >= this.getWidth()) {
+                gatBoomX = this.getWidth() - player1.getPanddleSizeX();
+            }
+            player1.setX(gatBoomX-50);
         }
 
-        player1.setX(gatBoomX);
-
+        if(event.getAction() == MotionEvent.ACTION_DOWN){
+            if(player1.getX() < gatBoomX)
+                player1.setX(player1.getX() + 20 > this.getWidth() ? this.getWidth() - player1.getPanddleSizeX(): player1.getX() + 20);
+            if(player1.getX() > gatBoomX)
+                player1.setX(player1.getX() - 20<0? 0:player1.getX()-20);
+        }
         return true;
     }
 
@@ -74,6 +76,14 @@ public class MainView extends View {
     public void onSizeChanged(int w, int h, int oldW, int oldH) {
         //tạo boom
         if (cfCreateBoom) {
+            //tao banh
+            ball = new Ball(50,50,R.drawable.ball,SpeedX,SpeedY);
+            BoomSizeX = 50;
+            BoomSizeY = 50;
+            ball.setX(x);
+            ball.setY(y);
+            ball.setView(this);
+            //tao boom
             for (int j = 3; j < 7; j++) {
                 int i = 0;
                 while (i * 50 < (w - 50)) {
@@ -86,15 +96,17 @@ public class MainView extends View {
                     ArrBoom.add(p);
                 }
             }
+            //tao nguoi choi
             player1 = new Player(100, 40, R.drawable.gatbong);
             player1.setX(w / 3);
             player1.setY(h - (h / 8));
             player1.setView(this);
-
+            //tao may choi
             player2 = new Player(100, 40, R.drawable.gatbong);
             player2.setX(w - (w / 5));
             player2.setY((h / 10));
             player2.setView(this);
         }
     }
+
 }

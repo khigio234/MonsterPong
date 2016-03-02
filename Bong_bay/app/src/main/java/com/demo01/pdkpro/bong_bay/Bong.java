@@ -4,18 +4,17 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 
 public class Bong extends AppCompatActivity {
 
-
+    //MainView mainView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 //        setContentView(new MyVew(this));
-        View bouncingBallView = new BouncingBallView(this);
-        View mainView = new MainView(this);
-        setContentView(mainView);
+        //View bouncingBallView = new BouncingBallView(this);
+        //mainView = new MainView(this);
+        setContentView(new MainView(this));
     }
 
     @Override
@@ -28,5 +27,11 @@ public class Bong extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        //this.mainView.
     }
 }
