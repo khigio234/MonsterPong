@@ -1,7 +1,5 @@
 package com.demo01.pdkpro.bong_bay;
 
-import android.widget.Toast;
-
 import java.util.ArrayList;
 
 /**
@@ -15,8 +13,8 @@ public class Ball extends ObjectFather{
 
     }
     public Ball(int ballSizeX,int ballSizeY,int Image,float SpeedX,float SpeedY){
-        this.ballSizeX = ballSizeX;
-        this.ballSizeY = ballSizeY;
+        this.SizeX = ballSizeX;
+        this.SizeY = ballSizeY;
         this.Image = Image;
         this.SpeedX = SpeedX;
         this.SpeedY = SpeedY;
@@ -39,19 +37,19 @@ public class Ball extends ObjectFather{
     }
 
     public void setBallSizeX(int ballSizeX) {
-        this.ballSizeX = ballSizeX;
+        this.SizeX = ballSizeX;
     }
 
     public int getBallSizeX() {
-        return ballSizeX;
+        return SizeX;
     }
 
     public void setBallSizeY(int ballSizeY) {
-        this.ballSizeY = ballSizeY;
+        this.SizeY = ballSizeY;
     }
 
     public int getBallSizeY() {
-        return ballSizeY;
+        return SizeY;
     }
 
     public void setVal(int val) {
@@ -82,18 +80,18 @@ public class Ball extends ObjectFather{
         this.x += this.getSpeedX();
         this.y += this.getSpeedY();
         //trường hợp chay ra khỏi màn hình 2 bên trái phải màn hình
-        if(this.x<0 || this.x+this.ballSizeX > this.view.getWidth()){
+        if(this.x<0 || this.x+this.SizeX > this.view.getWidth()){
             SpeedX = -SpeedX;
-            this.x = this.x<0 ? this.xMin:this.xMax-ballSizeY;
+            this.x = this.x<0 ? this.xMin:this.xMax-SizeY;
         }
         //trường hợp vượt quá lên trên hoặc xún dưới của màn hình
-        if(this.y<0||this.y+this.ballSizeY>this.view.getHeight()&&cf){
-            //SpeedY = -SpeedY;
-            //this.y = this.y<0 ? this.yMin:this.yMax-this.ballSizeY;
+        if(this.y<0||this.y+this.SizeY>this.view.getHeight()&&cf){
+            SpeedY = -SpeedY;
+            this.y = this.y<0 ? this.yMin:this.yMax-this.SizeY;
             //TRUONG HOP CHET ROI
-            cf = false;
+            //cf = false;
             String note = this.y < 0 ? "Máy":"Người";
-            Toast.makeText(this.view.getContext(), note+" Thua rồi nhé !!!!", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(this.view.getContext(), note+" Thua rồi nhé !!!!", Toast.LENGTH_SHORT).show();
         }
         //truong hợp va chamj voi các thanh trượt
         if(this.val>0){//banh đang bay qua bên trên tức là player 2
@@ -111,7 +109,7 @@ public class Ball extends ObjectFather{
     }
 
     public boolean checkCollision(Player player){
-        return this.x+ballSizeX >= player.getX() && this.x  <= player.getX()+player.getPanddleSizeX() && this.y+ballSizeY>=player.getY()&& this.y <= player.getY()+player.getPanddleSizeY();
+        return this.x+SizeX >= player.getX() && this.x  <= player.getX()+player.getSizeX() && this.y+SizeY>=player.getY()&& this.y <= player.getY()+player.getSizeY();
     }
 
 }

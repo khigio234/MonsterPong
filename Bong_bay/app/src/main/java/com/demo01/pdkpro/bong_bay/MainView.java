@@ -20,6 +20,9 @@ public class MainView extends View {
     boolean cfCreateBoom = true;
     //gat bong
     Player player1,player2;
+    //cờ nhấn giữ
+    Boolean cfMove = false;
+
     public MainView(Context context){
         super(context);
         ArrBoom = new ArrayList<>();
@@ -29,9 +32,9 @@ public class MainView extends View {
         //set hình nền
         this.setBackgroundResource(R.drawable.background);
         //vẽ bóng
-        ball.DrawBall(canvas);
-        player1.DrawPanddle(canvas);
-        player2.DrawPanddle(canvas);
+        ball.Draw(canvas);
+        player1.Draw(canvas);
+        player2.Draw(canvas);
         player2.update(ball);
         ball.update(player1, player2,ArrBoom);
         //ve boom
@@ -52,25 +55,33 @@ public class MainView extends View {
 
     @Override
     public boolean onTouchEvent(MotionEvent event){
-        float gatBoomX = event.getX();
-        float gatBoomY = event.getY();
+        float touchX= event.getX();
+        float touchY = event.getY();
 
-        if(gatBoomX > player1.getX() && gatBoomX < player1.getX() + player1.getPanddleSizeX()
-                && gatBoomY > player1.getY() && gatBoomY < player1.getY() + player1.getPanddleSizeY() && event.getAction() == MotionEvent.ACTION_MOVE) {
-            if (gatBoomX >= this.getWidth()) {
-                gatBoomX = this.getWidth() - player1.getPanddleSizeX();
-            }
-            player1.setX(gatBoomX-50);
+        if(touchX> player1.getX() && touchX< player1.getX() + player1.getSizeX()
+                && touchY > player1.getY() && touchY < player1.getY() + player1.getSizeY() && event.getAction() == MotionEvent.ACTION_MOVE) {
+            this.cfMove = true;
         }
-
+        //bat su kiện move
+        if(cfMove){
+            if (touchX >= this.getWidth() - player1.getSizeX()) {
+                touchX = this.getWidth() - player1.getSizeX()/2;
+            }
+            player1.setX(touchX-player1.getSizeX()/2 < 0 ? 0:touchX-player1.getSizeX()/2);
+        }
         if(event.getAction() == MotionEvent.ACTION_DOWN){
-            if(player1.getX() < gatBoomX)
-                player1.setX(player1.getX() + 20 > this.getWidth() ? this.getWidth() - player1.getPanddleSizeX(): player1.getX() + 20);
-            if(player1.getX() > gatBoomX)
+            if(player1.getX() < touchX)
+                player1.setX(player1.getX() + 20 > this.getWidth() ? this.getWidth() - player1.getSizeX(): player1.getX() + 20);
+            if(player1.getX() > touchX)
                 player1.setX(player1.getX() - 20<0? 0:player1.getX()-20);
+        }
+        //neu thả ra thì hết move
+        if(event.getAction() == MotionEvent.ACTION_UP){
+            this.cfMove = false;
         }
         return true;
     }
+
 
     @Override
     public void onSizeChanged(int w, int h, int oldW, int oldH) {
