@@ -10,6 +10,7 @@ import java.util.ArrayList;
 public class Ball extends ObjectFather{
     float SpeedX,SpeedY;
     int val = 1;//hướng trái banh. =1 -> đang chạy về phía bên trên << hướng này là hướng nhìn của người chơi nhìn vào
+    boolean cf = true;
     public Ball(){
 
     }
@@ -86,12 +87,13 @@ public class Ball extends ObjectFather{
             this.x = this.x<0 ? this.xMin:this.xMax-ballSizeY;
         }
         //trường hợp vượt quá lên trên hoặc xún dưới của màn hình
-        if(this.y<0||this.y+this.ballSizeY>this.view.getHeight()){
+        if(this.y<0||this.y+this.ballSizeY>this.view.getHeight()&&cf){
             //SpeedY = -SpeedY;
             //this.y = this.y<0 ? this.yMin:this.yMax-this.ballSizeY;
             //TRUONG HOP CHET ROI
+            cf = false;
             String note = this.y < 0 ? "Máy":"Người";
-            Toast.makeText(this.view.getContext(), note+" Thua rồi nhé !!!!", Toast.LENGTH_LONG).show();
+            Toast.makeText(this.view.getContext(), note+" Thua rồi nhé !!!!", Toast.LENGTH_SHORT).show();
         }
         //truong hợp va chamj voi các thanh trượt
         if(this.val>0){//banh đang bay qua bên trên tức là player 2

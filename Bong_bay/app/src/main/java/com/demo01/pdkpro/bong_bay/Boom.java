@@ -1,6 +1,7 @@
 package com.demo01.pdkpro.bong_bay;
 
 import android.graphics.Canvas;
+import android.widget.Toast;
 
 /**
  * Created by pdkpro on 01/03/2016.
@@ -49,8 +50,18 @@ public class Boom extends ObjectFather {
         //kiểm tra va chạm với boom
         if (this.isLife()&& this.checkCollision(ball)){
             this.setLife(false);
-            ball.setSpeedY(-ball.getSpeedY());
-            this.y = this.y + this.getBallSizeY();
+            //xét vị trí chạm mép dưới + mép trên
+            if((ball.getX()+ball.getBallSizeX()>=this.x || ball.getX()>=this.x) && ball.getX()<=this.x+this.ballSizeX) {
+                ball.setSpeedY(-ball.getSpeedY());
+                ball.setY(ball.getY() + ball.getSpeedY());
+                Toast.makeText(ball.getView().getContext(),"1 - "+ball.getSpeedY(),Toast.LENGTH_SHORT).show();
+            }
+            //trường hợp chạm mép 2 bên
+            else if((ball.getY()+ball.getBallSizeY()>=this.y||ball.getY()>=this.y) && ball.getY()<=this.y+this.ballSizeY){
+                ball.setSpeedX(-ball.getSpeedX());
+                ball.setX(ball.getX() + ball.getSpeedX());
+                Toast.makeText(ball.getView().getContext(),"2",Toast.LENGTH_SHORT).show();
+            }
         }
     }
 }

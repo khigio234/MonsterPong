@@ -4,7 +4,6 @@ import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
-import android.view.View;
 
 /**
  * Created by pdkpro on 01/03/2016.
@@ -16,7 +15,7 @@ public class ObjectFather {
     Bitmap BallModify;//trái hình trong bitmap dc dùng để chỉnh sửa
     Bitmap BallDraw;//trái hình trong bitmap dc dùng để vẽ
     float xMax, xMin = 0, yMax, yMin=0;
-    View view;
+    MainView view;
     public ObjectFather(){
 
     }
@@ -69,7 +68,7 @@ public class ObjectFather {
         return Image;
     }
 
-    public void setView(View view) {
+    public void setView(MainView view) {
         this.xMax = view.getWidth();
         this.yMax = view.getHeight();
         setBitmapFactory(view.getResources());
@@ -77,7 +76,7 @@ public class ObjectFather {
         this.view = view;
     }
 
-    public View getView() {
+    public MainView getView() {
         return view;
     }
 
