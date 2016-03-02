@@ -1,7 +1,5 @@
 package com.demo01.pdkpro.bong_bay;
 
-import android.widget.Toast;
-
 import java.util.ArrayList;
 
 /**
@@ -88,12 +86,12 @@ public class Ball extends ObjectFather{
         }
         //trường hợp vượt quá lên trên hoặc xún dưới của màn hình
         if(this.y<0||this.y+this.SizeY>this.view.getHeight()&&cf){
-            //SpeedY = -SpeedY;
-            //this.y = this.y<0 ? this.yMin:this.yMax-this.ballSizeY;
+            SpeedY = -SpeedY;
+            this.y = this.y<0 ? this.yMin:this.yMax-this.SizeY;
             //TRUONG HOP CHET ROI
-            cf = false;
+            //cf = false;
             String note = this.y < 0 ? "Máy":"Người";
-            Toast.makeText(this.view.getContext(), note+" Thua rồi nhé !!!!", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(this.view.getContext(), note+" Thua rồi nhé !!!!", Toast.LENGTH_SHORT).show();
         }
         //truong hợp va chamj voi các thanh trượt
         if(this.val>0){//banh đang bay qua bên trên tức là player 2
