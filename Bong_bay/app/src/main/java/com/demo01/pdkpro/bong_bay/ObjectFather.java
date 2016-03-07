@@ -9,13 +9,13 @@ import android.graphics.Canvas;
  * Created by pdkpro on 01/03/2016.
  */
 public class ObjectFather {
-    float x,y;
-    int Image;
-    int SizeX,SizeY;//cai này dùng để ddingj dạng khi vẽ Bitmap
-    Bitmap ObjectModify;//trái hình trong bitmap dc dùng để chỉnh sửa
-    Bitmap ObjectDraw;//trái hình trong bitmap dc dùng để vẽ
-    float xMax, xMin = 0, yMax, yMin=0;
-    MainView view;
+    private float x,y;
+    private int Image;
+    private int SizeX,SizeY;//cai này dùng để ddingj dạng khi vẽ Bitmap
+    private Bitmap ObjectModify;//trái hình trong bitmap dc dùng để chỉnh sửa
+    private Bitmap ObjectDraw;//trái hình trong bitmap dc dùng để vẽ
+    private float xMax, xMin = 0, yMax, yMin=0;
+    private MainView view;
     public ObjectFather(){
 
     }
@@ -64,6 +64,38 @@ public class ObjectFather {
         Image = image;
     }
 
+    public void setxMax(float xMax) {
+        this.xMax = xMax;
+    }
+
+    public float getxMax() {
+        return xMax;
+    }
+
+    public void setxMin(float xMin) {
+        this.xMin = xMin;
+    }
+
+    public float getxMin() {
+        return xMin;
+    }
+
+    public float getyMin() {
+        return yMin;
+    }
+
+    public void setyMin(float yMin) {
+        this.yMin = yMin;
+    }
+
+    public void setyMax(float yMax) {
+        this.yMax = yMax;
+    }
+
+    public float getyMax() {
+        return yMax;
+    }
+
     public int getImage() {
         return Image;
     }
@@ -74,6 +106,18 @@ public class ObjectFather {
         setBitmapFactory(view.getResources());
         setScaledBitmap(this.SizeX,SizeY,false);
         this.view = view;
+    }
+
+    public Bitmap getObjectDraw() {
+        return ObjectDraw;
+    }
+
+    public void setObjectDraw(Bitmap objectDraw) {
+        ObjectDraw = objectDraw;
+    }
+
+    public Bitmap getObjectModify() {
+        return ObjectModify;
     }
 
     public MainView getView() {
