@@ -1,4 +1,4 @@
-package com.demo01.pdkpro.bong_bay;
+package com.demo01.pdkpro.bong_bay.Game;
 
 import android.content.res.Resources;
 import android.graphics.Bitmap;
@@ -16,6 +16,7 @@ public class ObjectFather {
     private Bitmap ObjectDraw;//trái hình trong bitmap dc dùng để vẽ
     private float xMax, xMin = 0, yMax, yMin=0;
     private MainView view;
+    private boolean isLife = true;
     public ObjectFather(){
 
     }
@@ -27,6 +28,13 @@ public class ObjectFather {
         this.SizeX = ballSizeX;
         this.SizeY = ballSizeY;
         this.Image = Image;
+    }
+    public boolean isLife() {
+        return isLife;
+    }
+
+    public void setLife(boolean isLife){
+        this.isLife = isLife;
     }
     public void setX(float x) {
         this.x = x;
@@ -143,7 +151,6 @@ public class ObjectFather {
     }
 
     public void Draw(Canvas canvas){
-//        Toast.makeText(this.view.getContext(),this.x+"- "+this.y,Toast.LENGTH_SHORT).show();
         canvas.drawBitmap(this.ObjectDraw,this.x,this.y,null);
     }
 

@@ -63,7 +63,7 @@ public class BouncingBallView extends View {
         //coppy hình ảnh bỏ vào trong drawable
 
         //draw ball first
-        Bitmap ball = BitmapFactory.decodeResource(getResources(),R.drawable.ball);
+        Bitmap ball = BitmapFactory.decodeResource(getResources(),R.drawable.ball5);
         Bitmap ballResize = Bitmap.createScaledBitmap(ball,50,50,false);
         canvas.drawBitmap(ballResize, ballX, ballY, null);
 

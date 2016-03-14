@@ -1,13 +1,14 @@
-package com.demo01.pdkpro.bong_bay;
+package com.demo01.pdkpro.bong_bay.Game;
 
 import android.content.Context;
 import android.graphics.Canvas;
+
+import com.demo01.pdkpro.bong_bay.R;
 
 /**
  * Created by pdkpro on 01/03/2016.
  */
 public class Boom extends ObjectFather {
-    boolean isLife = true;
     int songFile;
     SoundManager mSoundManage;
 
@@ -18,14 +19,6 @@ public class Boom extends ObjectFather {
     public Boom(float x,float y){
         this.setX(x);
         this.setY(y);
-    }
-
-    public boolean isLife() {
-        return isLife;
-    }
-
-    public void setLife(boolean isLife){
-        this.isLife = isLife;
     }
 
     public void DrawBall(Canvas canvas){
@@ -71,7 +64,7 @@ public class Boom extends ObjectFather {
     public void setSong(Context context){
         mSoundManage = new SoundManager();
         mSoundManage.initSounds(context);
-        mSoundManage.addSound(0,R.raw.chamquai);
+        mSoundManage.addSound(0, R.raw.chamquai);
     }
     // phát nhạc
     public void PlaySong(){
