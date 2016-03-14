@@ -1,5 +1,6 @@
-package com.demo01.pdkpro.bong_bay;
+package com.demo01.pdkpro.bong_bay.Game;
 
+import com.demo01.pdkpro.bong_bay.R;
 import com.demo01.pdkpro.bong_bay.Saved.Panddle;
 
 /**
@@ -7,6 +8,6 @@ import com.demo01.pdkpro.bong_bay.Saved.Panddle;
  */
 public class AI extends Panddle {
     public AI(int x, int y, int w, int h){
-        super(x,y,R.drawable.gatbong);
+        super(x,y, R.drawable.gatbong);
     }
 }

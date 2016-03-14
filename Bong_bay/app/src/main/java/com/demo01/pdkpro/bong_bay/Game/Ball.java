@@ -1,6 +1,8 @@
-package com.demo01.pdkpro.bong_bay;
+package com.demo01.pdkpro.bong_bay.Game;
 
 import android.content.Context;
+
+import com.demo01.pdkpro.bong_bay.R;
 
 import java.util.ArrayList;
 
@@ -10,7 +12,6 @@ import java.util.ArrayList;
 public class Ball extends ObjectFather{
     float SpeedX,SpeedY;
     int val = 1;//hướng trái banh. =1 -> đang chạy về phía bên trên << hướng này là hướng nhìn của người chơi nhìn vào
-    boolean cf = true;
     SoundManager mSoundManager;
 
     public Ball(){
@@ -56,17 +57,17 @@ public class Ball extends ObjectFather{
         if(this.getX() <0 || this.getX()+this.getSizeX() > this.getView().getWidth()){
             SpeedX = -SpeedX;
             this.setX(this.getX()<0 ? this.getxMin():this.getxMax()-this.getSizeX());
-            this.PlaySong();
+            this.playSong(0);
         }
         //trường hợp vượt quá lên trên hoặc xún dưới của màn hình
-        if(this.getY() <0 || this.getY() + this.getSizeY() > this.getView().getHeight()&&cf){
-            SpeedY = -SpeedY;
-            this.setY(this.getY()<0 ? this.getyMin():this.getyMax()-this.getSizeY());
-            //TRUONG HOP CHET ROI
-            //cf = false;
-            this.PlaySong();
-            String note = this.getY() < 0 ? "Máy":"Người";
-            //Toast.makeText(this.view.getContext(), note+" Thua rồi nhé !!!!", Toast.LENGTH_SHORT).show();
+        if(this.getY() <0 || this.getY() + this.getSizeY() > this.getView().getHeight()){
+            if(this.getY()<0){//win
+                this.playSong(2);
+            }else{//lose
+                this.playSong(1);
+            }
+            //cho trai banh chet
+            this.setLife(false);
         }
         //truong hợp va chamj voi các thanh trượt
         if(this.val>0){
@@ -95,20 +96,32 @@ public class Ball extends ObjectFather{
             if(collisionBT(player)){
                 SpeedY = -SpeedY;
                 this.setY(player.getY()+10-this.getSizeY());
+                //biet vi tri va cham voi ban gat
+                if(this.getX()>player.getX()+player.getSizeX()/2){
+                    //se set cho x tang
+                    if(this.getSpeedX()<0){//x hien tai dang giam
+                        this.setSpeedX(-this.getSpeedX());
+                    }
+                }else{
+                    //se set cho x giam
+                    if(this.getSpeedX()>0){//x hien tai dang tang
+                        this.setSpeedX(-this.getSpeedX());
+                    }
+                }
             } else if(collosionLR(player)){
                 SpeedX = -SpeedX;
             }
         }
     }
-
+    //va cham tren
     public boolean collisionBT(Player player){
         return (this.getX() + this.getSizeX() >= player.getX() || this.getX() >= player.getX())&& this.getX() <= player.getX()+player.getSizeX();
     }
-
+    //va cham trai phai
     public boolean collosionLR(Player player){
         return (this.getY() + this.getSizeY() >= player.getY() || this.getY() >= player.getY())&& this.getY() <= player.getY()+player.getSizeY();
     }
-
+    //kiem tra va cham
     public boolean checkCollision(Player player,int delta){
         return this.getX()+this.getSizeX() >= player.getX() && this.getX()  <= player.getX()+player.getSizeX() && this.getY()+this.getSizeY()>=player.getY()+delta&& this.getY() <= player.getY()+player.getSizeY()+delta;
     }
@@ -116,16 +129,15 @@ public class Ball extends ObjectFather{
     public void setSong(Context context){
         mSoundManager = new SoundManager();
         mSoundManager.initSounds(context);
-        mSoundManager.addSound(0,R.raw.chamtuong);
-
+        mSoundManager.addSound(0, R.raw.chamtuong);
+        mSoundManager.addSound(1, R.raw.lose);
+        mSoundManager.addSound(2, R.raw.win);
     }
     // phát nhạc
-    public void PlaySong(){
-        //this.song.start();
-        this.mSoundManager.playSound(0);
+    public void playSong(int index){
+        this.mSoundManager.playSound(index);
     }
     //stop Song
     public void StopSong(){
-        //this.song.stop();
     }
 }

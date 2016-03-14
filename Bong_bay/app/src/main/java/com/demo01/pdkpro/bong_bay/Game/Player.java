@@ -1,6 +1,8 @@
-package com.demo01.pdkpro.bong_bay;
+package com.demo01.pdkpro.bong_bay.Game;
 
 import android.content.Context;
+
+import com.demo01.pdkpro.bong_bay.R;
 
 /**
  * Created by CO on 1/22/2016.
@@ -22,7 +24,7 @@ public class Player extends ObjectFather{
     public void setSong(Context context){
         mSoundManager = new SoundManager();
         mSoundManager.initSounds(context);
-        mSoundManager.addSound(0,R.raw.chamgach);
+        mSoundManager.addSound(0, R.raw.chamgach);
     }
     // phát nhạc
     public void PlaySong(){
