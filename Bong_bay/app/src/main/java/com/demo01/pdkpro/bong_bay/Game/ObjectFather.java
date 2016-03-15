@@ -1,9 +1,12 @@
 package com.demo01.pdkpro.bong_bay.Game;
 
+import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
+
+import com.demo01.pdkpro.bong_bay.R;
 
 /**
  * Created by pdkpro on 01/03/2016.
@@ -11,23 +14,31 @@ import android.graphics.Canvas;
 public class ObjectFather {
     private float x,y;
     private int Image;
-    private int SizeX,SizeY;//cai này dùng để ddingj dạng khi vẽ Bitmap
+    private int sizeX,sizeY;//cai này dùng để ddingj dạng khi vẽ Bitmap
     private Bitmap ObjectModify;//trái hình trong bitmap dc dùng để chỉnh sửa
     private Bitmap ObjectDraw;//trái hình trong bitmap dc dùng để vẽ
     private float xMax, xMin = 0, yMax, yMin=0;
     private MainView view;
     private boolean isLife = true;
+    int songFile;
+    SoundManager mSoundManager;
     public ObjectFather(){
 
     }
-    public ObjectFather(int ballSizeX,int ballSizeY){
-        this.SizeX = ballSizeX;
-        this.SizeY = ballSizeY;
+    public ObjectFather(int sizeX,int sizeY){
+        this.sizeX = sizeX;
+        this.sizeY = sizeY;
     }
-    public ObjectFather(int ballSizeX,int ballSizeY,int Image){
-        this.SizeX = ballSizeX;
-        this.SizeY = ballSizeY;
+    public ObjectFather(int sizeX,int sizeY,int Image, float x, float y, Context context){
+        this.sizeX = sizeX;
+        this.sizeY = sizeY;
         this.Image = Image;
+        this.x = x;
+        this.y = y;
+
+        mSoundManager = new SoundManager();
+        mSoundManager.initSounds(context);
+        mSoundManager.addSound(0, R.raw.chamgach);
     }
     public boolean isLife() {
         return isLife;
@@ -52,20 +63,20 @@ public class ObjectFather {
         return y;
     }
 
-    public void setSizeY(int ballSizeY) {
-        this.SizeY = ballSizeY;
+    public void setSizeY(int sizeY) {
+        this.sizeY = sizeY;
     }
 
     public int getSizeY() {
-        return SizeY;
+        return sizeY;
     }
 
-    public void setSizeX(int ballSizeX) {
-        this.SizeX = ballSizeX;
+    public void setSizeX(int sizeX) {
+        this.sizeX = sizeX;
     }
 
     public int getSizeX() {
-        return SizeX;
+        return sizeX;
     }
 
     public void setImage(int image) {
@@ -112,7 +123,7 @@ public class ObjectFather {
         this.xMax = view.getWidth();
         this.yMax = view.getHeight();
         setBitmapFactory(view.getResources());
-        setScaledBitmap(this.SizeX,SizeY,false);
+        setScaledBitmap(this.sizeX,this.sizeY);
         this.view = view;
     }
 
@@ -136,10 +147,10 @@ public class ObjectFather {
         this.ObjectModify = BitmapFactory.decodeResource(resources, this.getImage());
     }
 
-    public void setScaledBitmap(int width,int height,boolean fitler){
-        this.SizeX = width;
-        this.SizeY = height;
-        this.ObjectDraw = Bitmap.createScaledBitmap(this.ObjectModify, width, height, fitler);
+    public void setScaledBitmap(int width,int height){
+        this.sizeX = width;
+        this.sizeY = height;
+        this.ObjectDraw = Bitmap.createScaledBitmap(this.ObjectModify, width, height, false);
     }
 
     public void setObjectModify(Bitmap ObjectModify) {

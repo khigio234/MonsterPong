@@ -2,9 +2,6 @@ package com.demo01.pdkpro.bong_bay.Control;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ViewFlipper;
 
@@ -27,18 +24,18 @@ public class Bong extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //tao cac gia tri
-        createarrMenu();
-        createHash();
+        //createarrMenu();
+        //createHash();
         //set view
-        setContentView(R.layout.activity_bong);
+        setContentView(new MainView(this));
         viewFlipper = (ViewFlipper) findViewById(R.id.view_flipper);
 
         viewMenu = (View) findViewById(R.id.menu);
-        viewMenu.setBackgroundResource(R.drawable.menu01);
+//        viewMenu.setBackgroundResource(R.drawable.menu01);
         //
-        mainView = new MainView(viewMenu.getContext(),hashBacground.get(arrMenu.get(0)));
-        viewFlipper.addView(mainView);
-
+        //mainView = new MainView(viewMenu.getContext(),hashBacground.get(arrMenu.get(0)));
+//        viewFlipper.addView(mainView);
+/*
         viewMenu.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View view, MotionEvent event) {
@@ -130,5 +127,5 @@ public class Bong extends AppCompatActivity {
         arrMenu.add(R.drawable.menu03);
         arrMenu.add(R.drawable.menu04);
         arrMenu.add(R.drawable.menu05);
-    }
-}
+    }*/
+}}

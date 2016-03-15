@@ -1,13 +1,18 @@
 package com.demo01.pdkpro.bong_bay.Game;
 
-import com.demo01.pdkpro.bong_bay.R;
-import com.demo01.pdkpro.bong_bay.Saved.Panddle;
+import android.content.Context;
 
 /**
  * Created by CO on 3/1/2016.
  */
-public class AI extends Panddle {
-    public AI(int x, int y, int w, int h){
-        super(x,y, R.drawable.gatbong);
+public class AI extends ObjectFather {
+    public AI(int sizeX,int sizeY,int Image, float x, float y, Context context){
+        super(sizeX,sizeY,Image,x,y,context);
+    }
+    public void update(Ball ball){
+        if(ball.getX() > 0 && ball.getX() <= ball.getxMax()-this.getSizeX())
+        {
+            this.setX(ball.getX());
+        }
     }
 }
