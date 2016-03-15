@@ -12,8 +12,9 @@ public class Boom extends ObjectFather {
     int songFile;
     SoundManager mSoundManage;
 
-    public Boom(int ballSizeX,int ballSizeY,int Image){
-        super(ballSizeX,ballSizeY,Image);
+    public Boom(int sizeX,int sizeY,int Image, int x, int y, Context context)
+    {
+        super(sizeX,sizeY,Image,x,y,context);
     }
 
     public Boom(float x,float y){
@@ -46,7 +47,7 @@ public class Boom extends ObjectFather {
         //kiểm tra va chạm với boom
         if (this.isLife()&& this.checkCollision(ball)){
             this.setLife(false);
-            this.PlaySong();
+//            this.PlaySong();
             //xét vị trí chạm mép dưới + mép trên
             if((ball.getX()+ball.getSizeX()>=this.getX() || ball.getX()>=this.getX()) && ball.getX()<=this.getX()+this.getSizeX()) {
                 ball.setSpeedY(-ball.getSpeedY());

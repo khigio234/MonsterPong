@@ -49,7 +49,7 @@ public class Ball extends ObjectFather{
         return val;
     }
 
-    public void update(Player player1,Player player2,ArrayList<Boom> ArrBoom){
+    public void update(Player player,AI ai,ArrayList<Boom> ArrBoom){
         //nếu không có gì xảy ra thì
         this.setX(this.getX()+this.getSpeedX());
         this.setY(this.getY()+this.getSpeedY());
@@ -74,30 +74,30 @@ public class Ball extends ObjectFather{
 
         }
         //banh đang bay qua bên trên tức là player 2
-        if(checkCollision(player2,-10)){
-            xuLyVaCham(player2, true);
+        if(checkCollision(ai,-10)){
+            xuLyVaCham(ai, true);
         }
         //banh đang bay qua bên trên tức là player 1
-        else if(checkCollision(player1, 10)){
-            xuLyVaCham(player1,false);
+        else if(checkCollision(player, 10)){
+            xuLyVaCham(player,false);
         }
     }
 
-    public void xuLyVaCham(Player player,boolean cfAI){
-        player.PlaySong();
+    public void xuLyVaCham(ObjectFather obj,boolean cfAI){
+        //obj.PlaySong();
         if(cfAI){
-            if(collisionBT(player)){
+            if(collisionBT(obj)){
                 SpeedY = -SpeedY;
-                this.setY(player.getY()+this.getSizeY());
-            } else if(collosionLR(player)){
+                this.setY(obj.getY()+this.getSizeY());
+            } else if(collosionLR(obj)){
                 SpeedX = -SpeedX;
             }
         }else{
-            if(collisionBT(player)){
+            if(collisionBT(obj)){
                 SpeedY = -SpeedY;
-                this.setY(player.getY()+10-this.getSizeY());
+                this.setY(obj.getY()+10-this.getSizeY());
                 //biet vi tri va cham voi ban gat
-                if(this.getX()>player.getX()+player.getSizeX()/2){
+                if(this.getX()>obj.getX()+obj.getSizeX()/2){
                     //se set cho x tang
                     if(this.getSpeedX()<0){//x hien tai dang giam
                         this.setSpeedX(-this.getSpeedX());
@@ -108,22 +108,22 @@ public class Ball extends ObjectFather{
                         this.setSpeedX(-this.getSpeedX());
                     }
                 }
-            } else if(collosionLR(player)){
+            } else if(collosionLR(obj)){
                 SpeedX = -SpeedX;
             }
         }
     }
     //va cham tren
-    public boolean collisionBT(Player player){
-        return (this.getX() + this.getSizeX() >= player.getX() || this.getX() >= player.getX())&& this.getX() <= player.getX()+player.getSizeX();
+    public boolean collisionBT(ObjectFather obj){
+        return (this.getX() + this.getSizeX() >= obj.getX() || this.getX() >= obj.getX())&& this.getX() <= obj.getX()+obj.getSizeX();
     }
     //va cham trai phai
-    public boolean collosionLR(Player player){
-        return (this.getY() + this.getSizeY() >= player.getY() || this.getY() >= player.getY())&& this.getY() <= player.getY()+player.getSizeY();
+    public boolean collosionLR(ObjectFather obj){
+        return (this.getY() + this.getSizeY() >= obj.getY() || this.getY() >= obj.getY())&& this.getY() <= obj.getY()+obj.getSizeY();
     }
     //kiem tra va cham
-    public boolean checkCollision(Player player,int delta){
-        return this.getX()+this.getSizeX() >= player.getX() && this.getX()  <= player.getX()+player.getSizeX() && this.getY()+this.getSizeY()>=player.getY()+delta&& this.getY() <= player.getY()+player.getSizeY()+delta;
+    public boolean checkCollision(ObjectFather obj,int delta){
+        return this.getX()+this.getSizeX() >= obj.getX() && this.getX()  <= obj.getX()+obj.getSizeX() && this.getY()+this.getSizeY()>=obj.getY()+delta&& this.getY() <= obj.getY()+obj.getSizeY()+delta;
     }
     //taoj nhac
     public void setSong(Context context){
