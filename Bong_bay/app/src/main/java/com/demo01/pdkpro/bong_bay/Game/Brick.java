@@ -1,5 +1,6 @@
 package com.demo01.pdkpro.bong_bay.Game;
 
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
@@ -16,6 +17,7 @@ public class Brick {
     private ArrayList<Float> brickX ;
     private ArrayList<Float> brickY;
     private int side;
+    SoundManager mSoundManage;
 
     public Bitmap getBrick(int i){
         return brick.get(i);
@@ -29,11 +31,14 @@ public class Brick {
         return brickY.get(i);
     }
 
-    public Brick(){
+    public Brick(Context context){
         brick = new ArrayList<Bitmap>();
         brickX = new ArrayList<Float>();
         brickY = new ArrayList<Float>();
         side = 50;
+        mSoundManage = new SoundManager();
+        mSoundManage.initSounds(context);
+        mSoundManage.addSound(0, R.raw.chambrick);
     }
 
     public void init(int w, int h, MainGame view) {
@@ -58,7 +63,7 @@ public class Brick {
         }
     }
 
-    public void collision(Ball ball) {
+    public void update(Ball ball) {
         for (int i = 0; i < brick.size(); i++) {
 
             float tempX = ball.getX()+ball.getSizeX()/2;
@@ -66,29 +71,40 @@ public class Brick {
 
             if(isCollison(tempX,ball.getY(),brickX.get(i), brickY.get(i),side)
                     || isCollison(tempX,tempYBottom,brickX.get(i),brickY.get(i),side)){
-                ball.setSpeedY(-ball.getSpeedY());
-                //ball.setY(ball.getY() + ball.getSpeedY());
-                brick.remove(i);
-                brickX.remove(i);
-                brickY.remove(i);
+                ball.setvelocityY(-ball.getvelocityY());
+                remove(i);
             }
             else {
+
                 float tempY = ball.getY() + ball.getSizeY() / 2;
                 float tempXLeft = ball.getX() + ball.getSizeX();
                 if (isCollison(ball.getX(), tempY, brickX.get(i), brickY.get(i), side)
                         || isCollison(tempXLeft, tempY, brickX.get(i), brickY.get(i), side)) {
-                    ball.setSpeedX(-ball.getSpeedX());
-                    //ball.setX(ball.getX() + ball.getSpeedX());
-                    brick.remove(i);
-                    brickX.remove(i);
-                    brickY.remove(i);
+                    ball.setvelocityX(-ball.getvelocityX());
+                    remove(i);
                 }
             }
         }
     }
 
     private boolean isCollison(float ax, float ay, float bx, float by, float bs){
-        return bx <= ax && ax <= bx+bs && by <= ay && ay <= by+bs;
+        return bx < ax && ax < bx+bs && by < ay && ay < by+bs;
     }
 
+    public void remove(int i){
+        brick.remove(i);
+        brickX.remove(i);
+        brickY.remove(i);
+        playSong();
+    }
+    //taoj nhac
+    public void setSong(Context context){
+        mSoundManage = new SoundManager();
+        mSoundManage.initSounds(context);
+        mSoundManage.addSound(0, R.raw.chambrick);
+    }
+    // phát nhạc
+    public void playSong(){
+        this.mSoundManage.playSound(0);
+    }
 }
