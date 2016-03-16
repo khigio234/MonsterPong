@@ -16,17 +16,20 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".Control.SelectMonsterScreen"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
-
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Control.GamePlayScreen"
             android:theme="@style/AppTheme.NoActionBar" />
-
         <activity
             android:name=".Control.MapScreen"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Control.IntroduceScreen"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Control.HighScoreScreen"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 

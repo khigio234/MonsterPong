@@ -13,7 +13,7 @@
         android:layout_height="fill_parent"
         android:id="@+id/viewFlipper">
 
-        //monster
+        //monster 1
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
@@ -23,7 +23,7 @@
                 android:layout_height="fill_parent"
                 android:scaleType="fitXY"
                 android:id="@+id/iamgeView01"
-                android:src="@drawable/monster01"
+                android:src="@drawable/select_pink"
                 />
 
         </RelativeLayout>
@@ -37,7 +37,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:scaleType="fitXY"
-                android:src="@drawable/monster02"
+                android:src="@drawable/select_wood"
                 />
 
         </RelativeLayout>
@@ -51,7 +51,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:scaleType="fitXY"
-                android:src="@drawable/monster03"
+                android:src="@drawable/select_star"
                 />
 
         </RelativeLayout>
@@ -65,7 +65,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:scaleType="fitXY"
-                android:src="@drawable/monster04"
+                android:src="@drawable/select_robo"
                 />
 
         </RelativeLayout>
@@ -79,7 +79,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:scaleType="fitXY"
-                android:src="@drawable/monster05"
+                android:src="@drawable/select_frog"
                 />
 
         </RelativeLayout>
