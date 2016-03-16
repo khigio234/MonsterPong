@@ -42,7 +42,7 @@ public class Player extends ObjectFather{
     public void setSong(Context context){
         mSoundManager = new SoundManager();
         mSoundManager.initSounds(context);
-        mSoundManager.addSound(0, R.raw.chamgach);
+        mSoundManager.addSound(0, R.raw.chambrick);
     }
     // phát nhạc
     public void PlaySong(){

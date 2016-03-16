@@ -38,7 +38,10 @@ public class ObjectFather {
 
         mSoundManager = new SoundManager();
         mSoundManager.initSounds(context);
-        mSoundManager.addSound(0, R.raw.chamgach);
+        mSoundManager.addSound(0,R.raw.chamthanhtruot);
+        mSoundManager.addSound(1, R.raw.chamtuong);
+        mSoundManager.addSound(2, R.raw.lose);
+        mSoundManager.addSound(3, R.raw.win);
     }
     public boolean isLife() {
         return isLife;
@@ -161,9 +164,12 @@ public class ObjectFather {
         return ObjectModify;
     }
 
-    public void Draw(Canvas canvas){
+    public void draw(Canvas canvas){
         canvas.drawBitmap(this.ObjectDraw,this.x,this.y,null);
     }
 
+    public void playSong(int index){
+        this.mSoundManager.playSound(index);
+    }
 }
 
