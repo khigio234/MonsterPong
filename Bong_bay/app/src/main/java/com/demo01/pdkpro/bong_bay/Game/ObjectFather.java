@@ -18,7 +18,7 @@ public class ObjectFather {
     private Bitmap ObjectModify;//trái hình trong bitmap dc dùng để chỉnh sửa
     private Bitmap ObjectDraw;//trái hình trong bitmap dc dùng để vẽ
     private float xMax, xMin = 0, yMax, yMin=0;
-    private MainView view;
+    private MainGame view;
     private boolean isLife = true;
     int songFile;
     SoundManager mSoundManager;
@@ -119,7 +119,7 @@ public class ObjectFather {
         return Image;
     }
 
-    public void setView(MainView view) {
+    public void setView(MainGame view) {
         this.xMax = view.getWidth();
         this.yMax = view.getHeight();
         setBitmapFactory(view.getResources());
@@ -139,7 +139,7 @@ public class ObjectFather {
         return ObjectModify;
     }
 
-    public MainView getView() {
+    public MainGame getView() {
         return view;
     }
 

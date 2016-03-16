@@ -10,7 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ViewFlipper;
 
-import com.demo01.pdkpro.bong_bay.Game.MainView;
+import com.demo01.pdkpro.bong_bay.Game.MainGame;
 import com.demo01.pdkpro.bong_bay.R;
 
 import java.util.ArrayList;
@@ -24,6 +24,26 @@ public class MainControl extends AppCompatActivity {
     ArrayList<Integer> arrMenu ;
     private Button playGame,introduce,heightScore;
     int index = 1;//so de lay trong hash map
+<<<<<<< HEAD:Bong_bay/app/src/main/java/com/demo01/pdkpro/bong_bay/Control/Bong.java
+    MainGame mainView;
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        //tao cac gia tri
+        //createarrMenu();
+        //createHash();
+        //set view
+        setContentView(new MainGame(this));
+        viewFlipper = (ViewFlipper) findViewById(R.id.view_flipper);
+
+        viewMenu = (View) findViewById(R.id.menu);
+//        viewMenu.setBackgroundResource(R.drawable.menu01);
+        //
+        //mainView = new MainView(viewMenu.getContext(),hashBacground.get(arrMenu.get(0)));
+//        viewFlipper.addView(mainView);
+/*
+        viewMenu.setOnTouchListener(new View.OnTouchListener() {
+=======
     private MainView mainView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +55,7 @@ public class MainControl extends AppCompatActivity {
         heightScore = (Button) findViewById(R.id.heightScore);
 
         playGame.setOnClickListener(new View.OnClickListener() {
+>>>>>>> master:Bong_bay/app/src/main/java/com/demo01/pdkpro/bong_bay/Control/MainControl.java
             @Override
             public void onClick(View v) {
                 Intent it2 = new Intent(MainControl.this,LeverScreen.class);

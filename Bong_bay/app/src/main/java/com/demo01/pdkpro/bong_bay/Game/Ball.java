@@ -4,58 +4,85 @@ import android.content.Context;
 
 import com.demo01.pdkpro.bong_bay.R;
 
-import java.util.ArrayList;
-
 /**
  * Created by pdkpro on 01/03/2016.
  */
 public class Ball extends ObjectFather{
-    float SpeedX,SpeedY;
-    int val = 1;//hướng trái banh. =1 -> đang chạy về phía bên trên << hướng này là hướng nhìn của người chơi nhìn vào
+    float speedX,speedY;
+    int velocity =10;
     SoundManager mSoundManager;
 
     public Ball(){
 
     }
-    public Ball(int ballSizeX,int ballSizeY,int Image,float SpeedX,float SpeedY){
-        this.setSizeX(ballSizeX);
-        this.setSizeY(ballSizeY);
-        this.setImage(Image);
-        this.SpeedX = SpeedX;
-        this.SpeedY = SpeedY;
+    public Ball(int sizeX,int sizeY,int Image, float x, float y, Context context,float speedX,float speedY){
+        super(sizeX,sizeY,Image,x,y,context);
+        this.speedX = speedX;
+        this.speedY = speedY;
     }
 
     public void setSpeedX(float speedX) {
-        this.SpeedX = speedX;
+        this.speedX = speedX;
     }
 
     public float getSpeedX() {
-        return SpeedX;
+        return speedX;
     }
 
     public void setSpeedY(float speedY) {
-        this.SpeedY = speedY;
+        this.speedY = speedY;
     }
 
     public float getSpeedY() {
-        return SpeedY;
+        return speedY;
     }
 
-    public void setVal(int val) {
-        this.val = val;
+    private boolean isCollisonPaddle(float ax, float ay, float aw, float ah, float bx, float by,float bw, float bh){
+        return ax < bx+bw && ay < by+bh && bx < ax+aw && by < ay+ah;
     }
 
-    public int getVal() {
-        return val;
+    public void update(Player player, AI ai) {
+
+        // cap nhat vi tri cua ball
+        this.setX(this.getX() + speedX);
+        this.setY(this.getY() + speedY);
+        // kiem tra banh co ra ngoai man hinh hay k, neu co thi bat nguoc lai
+        if (0 > this.getX() || this.getX() + this.getSizeX() > this.getView().getWidth()) {
+            float offset = speedX < 0 ? 0 - this.getX() : this.getView().getWidth() - (this.getX() + this.getSizeX());
+            this.setX(this.getX() + 2 * offset);
+            speedX *= -1;
+        }
+
+        if (speedY > 0) {
+            processingCollisonPaddle(player, -1f);
+        } else {
+            processingCollisonPaddle(ai,1f);
+        }
     }
 
+    private void processingCollisonPaddle(ObjectFather obj, float flagNavigation){
+        if(isCollisonPaddle(obj.getX(),obj.getY(), obj.getSizeX(), obj.getSizeY(),
+            this.getX(), this.getY(), this.getSizeX(),this.getSizeY()))
+        {
+            float temp = obj.getY() + flagNavigation*obj.getSizeY();
+            this.setY(temp);
+            float n = (this.getX() + this.getSizeX() - obj.getX())/(obj.getSizeX() + this.getSizeX());
+                float phi = (float)(0.25*Math.PI*(2*n-1));
+
+                float smash = (float)Math.abs(phi) > (float)(0.2*Math.PI) ? (float)1.5 : 1;
+                this.speedX = (int)(smash*velocity*Math.sin(phi));
+                this.speedY = (int)(flagNavigation*smash*velocity*Math.cos(phi));
+        }
+    }
+ //region Code_cu
+/*
     public void update(Player player,AI ai,ArrayList<Boom> ArrBoom){
         //nếu không có gì xảy ra thì
         this.setX(this.getX()+this.getSpeedX());
         this.setY(this.getY()+this.getSpeedY());
         //trường hợp chay ra khỏi màn hình 2 bên trái phải màn hình
         if(this.getX() <0 || this.getX()+this.getSizeX() > this.getView().getWidth()){
-            SpeedX = -SpeedX;
+            speedX = -speedX;
             this.setX(this.getX()<0 ? this.getxMin():this.getxMax()-this.getSizeX());
             this.playSong(0);
         }
@@ -87,44 +114,50 @@ public class Ball extends ObjectFather{
         //obj.PlaySong();
         if(cfAI){
             if(collisionBT(obj)){
-                SpeedY = -SpeedY;
+                speedY = -speedY;
                 this.setY(obj.getY()+this.getSizeY());
             } else if(collosionLR(obj)){
-                SpeedX = -SpeedX;
+                speedX = -speedX;
             }
         }else{
             if(collisionBT(obj)){
-                SpeedY = -SpeedY;
+                speedY = -speedY;
                 this.setY(obj.getY()+10-this.getSizeY());
                 //biet vi tri va cham voi ban gat
                 if(this.getX()>obj.getX()+obj.getSizeX()/2){
                     //se set cho x tang
-                    if(this.getSpeedX()<0){//x hien tai dang giam
-                        this.setSpeedX(-this.getSpeedX());
+                    if(this.getspeedX()<0){//x hien tai dang giam
+                        this.setspeedX(-this.getspeedX());
                     }
                 }else{
                     //se set cho x giam
-                    if(this.getSpeedX()>0){//x hien tai dang tang
-                        this.setSpeedX(-this.getSpeedX());
+                    if(this.getspeedX()>0){//x hien tai dang tang
+                        this.setspeedX(-this.getspeedX());
                     }
                 }
             } else if(collosionLR(obj)){
-                SpeedX = -SpeedX;
+                speedX = -speedX;
             }
         }
     }
-    //va cham tren
-    public boolean collisionBT(ObjectFather obj){
-        return (this.getX() + this.getSizeX() >= obj.getX() || this.getX() >= obj.getX())&& this.getX() <= obj.getX()+obj.getSizeX();
+
+    public boolean isCollision(float a_coordinate , int a_size, float b_coordinate, int b_size){
+        return (a_coordinate + a_size >= b_coordinate || a_coordinate >= b_coordinate && a_coordinate <= a_coordinate + b_size;
+    }
+    //va cham tren duoi
+    public boolean isCollision_Bottom_Top(ObjectFather obj){
+        return isCollision(this.getX(), this.getSizeX(), obj.getX(), obj.getSizeX());
     }
     //va cham trai phai
-    public boolean collosionLR(ObjectFather obj){
-        return (this.getY() + this.getSizeY() >= obj.getY() || this.getY() >= obj.getY())&& this.getY() <= obj.getY()+obj.getSizeY();
+    public boolean isCollosion_Left_Right(ObjectFather obj){
+        return isCollision(this.getY(), this.getSizeY(), obj.getY(), obj.getSizeY());
     }
     //kiem tra va cham
     public boolean checkCollision(ObjectFather obj,int delta){
         return this.getX()+this.getSizeX() >= obj.getX() && this.getX()  <= obj.getX()+obj.getSizeX() && this.getY()+this.getSizeY()>=obj.getY()+delta&& this.getY() <= obj.getY()+obj.getSizeY()+delta;
     }
+*/
+//endregion
     //taoj nhac
     public void setSong(Context context){
         mSoundManager = new SoundManager();
