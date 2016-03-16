@@ -9,7 +9,7 @@ import com.demo01.pdkpro.bong_bay.R;
 /**
  * Created by CO on 1/22/2016.
  */
-public class Player extends ObjectFather{
+public class Player extends Components{
     int songFile;
     SoundManager mSoundManager;
 
@@ -42,7 +42,7 @@ public class Player extends ObjectFather{
     public void setSong(Context context){
         mSoundManager = new SoundManager();
         mSoundManager.initSounds(context);
-        mSoundManager.addSound(0, R.raw.chambrick);
+        mSoundManager.addSound(0, R.raw.collision_brick);
     }
     // phát nhạc
     public void PlaySong(){
