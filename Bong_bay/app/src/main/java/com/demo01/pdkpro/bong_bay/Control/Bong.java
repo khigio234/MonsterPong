@@ -5,7 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ViewFlipper;
 
-import com.demo01.pdkpro.bong_bay.Game.MainView;
+import com.demo01.pdkpro.bong_bay.Game.MainGame;
 import com.demo01.pdkpro.bong_bay.R;
 
 import java.util.ArrayList;
@@ -19,7 +19,7 @@ public class Bong extends AppCompatActivity {
     HashMap<Integer,ArrayList<Integer>> hashBacground; //chua giao dien cac component
     ArrayList<Integer> arrMenu ;
     int index = 1;//so de lay trong hash map
-    MainView mainView;
+    MainGame mainView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,7 +27,7 @@ public class Bong extends AppCompatActivity {
         //createarrMenu();
         //createHash();
         //set view
-        setContentView(new MainView(this));
+        setContentView(new MainGame(this));
         viewFlipper = (ViewFlipper) findViewById(R.id.view_flipper);
 
         viewMenu = (View) findViewById(R.id.menu);

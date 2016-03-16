@@ -28,7 +28,7 @@ public class Boom extends ObjectFather {
     }
 
     public boolean checkCollision(Ball ball){
-        //return ball.x+ball.getBallSizeX() >= this.getX() && ball.x  <= this.getX()+this.getBallSizeX() && ball.y+ball.getBallSizeY()>=this.getY()&& ball.y <= this.getY()+this.getBallSizeY();
+
         if(KhoanCach(ball.getX(),ball.getY(),this.getX(),this.getY())<this.getSizeX()){
             return true;
         }
@@ -49,18 +49,21 @@ public class Boom extends ObjectFather {
             this.setLife(false);
 //            this.PlaySong();
             //xét vị trí chạm mép dưới + mép trên
-            if((ball.getX()+ball.getSizeX()>=this.getX() || ball.getX()>=this.getX()) && ball.getX()<=this.getX()+this.getSizeX()) {
+            if(isCollision(ball.getX(), ball.getSizeX(), this.getX(), this.getSizeX()))
+            {
                 ball.setSpeedY(-ball.getSpeedY());
                 ball.setY(ball.getY() + ball.getSpeedY());
             }
             //trường hợp chạm mép 2 bên
-            else if((ball.getY()+ball.getSizeY()>=this.getY()||ball.getY()>=this.getY()) && ball.getY()<=this.getY()+this.getSizeY()){
+            else if(isCollision(ball.getY(), ball.getSizeY(), this.getY(), this.getSizeY())){
                 ball.setSpeedX(-ball.getSpeedX());
                 ball.setX(ball.getX() + ball.getSpeedX());
             }
         }
     }
-
+    public boolean isCollision(float a_coordinate , int a_size, float b_coordinate, int b_size){
+        return (a_coordinate + a_size >= b_coordinate || a_coordinate >= b_coordinate && a_coordinate <= a_coordinate + b_size);
+    }
     //taoj nhac
     public void setSong(Context context){
         mSoundManage = new SoundManager();
