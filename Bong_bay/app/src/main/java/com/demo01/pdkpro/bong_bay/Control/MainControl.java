@@ -1,8 +1,13 @@
 package com.demo01.pdkpro.bong_bay.Control;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ViewFlipper;
 
 import com.demo01.pdkpro.bong_bay.Game.MainGame;
@@ -11,14 +16,15 @@ import com.demo01.pdkpro.bong_bay.R;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class Bong extends AppCompatActivity {
+public class MainControl extends AppCompatActivity {
 
-    // Tạo đối tượng ViewFlipper
     private ViewFlipper viewFlipper;
-    private View viewMenu;
+    private float xOld;
     HashMap<Integer,ArrayList<Integer>> hashBacground; //chua giao dien cac component
     ArrayList<Integer> arrMenu ;
+    private Button playGame,introduce,heightScore;
     int index = 1;//so de lay trong hash map
+<<<<<<< HEAD:Bong_bay/app/src/main/java/com/demo01/pdkpro/bong_bay/Control/Bong.java
     MainGame mainView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,32 +43,31 @@ public class Bong extends AppCompatActivity {
 //        viewFlipper.addView(mainView);
 /*
         viewMenu.setOnTouchListener(new View.OnTouchListener() {
+=======
+    private MainView mainView;
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main_control);
+
+        playGame = (Button) findViewById(R.id.playGame);
+        introduce = (Button) findViewById(R.id.playGame);
+        heightScore = (Button) findViewById(R.id.heightScore);
+
+        playGame.setOnClickListener(new View.OnClickListener() {
+>>>>>>> master:Bong_bay/app/src/main/java/com/demo01/pdkpro/bong_bay/Control/MainControl.java
             @Override
-            public boolean onTouch(View view, MotionEvent event) {
-                float x = event.getX();
-                float y = event.getY();
-                switch (event.getAction()) {
-                    case MotionEvent.ACTION_DOWN:
-                        if(x>245 && x < 528 && y >1020 && y< 1122){
-//                            setContentView(new MainView(viewMenu.getContext(),hashBacground.get(arrMenu.get(index-1))));
-                            //mainView = new MainView(viewMenu.getContext(),hashBacground.get(arrMenu.get(0)));
-                            mainView.setArrGUI(hashBacground.get(arrMenu.get(index - 1)));
-                            mainView.setViewFlipper(viewFlipper);
-                            viewFlipper.setDisplayedChild(1);
-                        }
-                        else if(x>18 && x < 102 && y >311 && y< 376){
-                            index--;
-                            if(index<1){index = 5;};
-                            viewMenu.setBackgroundResource(arrMenu.get(index-1));
-                        }else if (x>661 && x < 748 && y >311 && y< 376){
-                            index++;
-                            if(index>5){index = 1;};
-                            viewMenu.setBackgroundResource(arrMenu.get(index - 1));
-                        }
-                }
-                return true;
+            public void onClick(View v) {
+                Intent it2 = new Intent(MainControl.this,LeverScreen.class);
+                startActivity(it2);
             }
         });
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+
+        return  true;
     }
 
     @Override
@@ -83,7 +88,7 @@ public class Bong extends AppCompatActivity {
         //this.mainView.
     }
 
-    private void createHash(){
+    private void createHashBackgroundAndIconGame(){
         this.hashBacground = new HashMap<>();
         //man 1
         ArrayList<Integer> arr1 = new ArrayList<>();
@@ -120,12 +125,12 @@ public class Bong extends AppCompatActivity {
         arr5.add(R.drawable.block3);
         hashBacground.put(R.drawable.menu05,arr5);
     }
-    private void createarrMenu(){
+    private void createArrMenuBackground(){
         arrMenu = new ArrayList<>();
         arrMenu.add(R.drawable.menu01);
         arrMenu.add(R.drawable.menu02);
         arrMenu.add(R.drawable.menu03);
         arrMenu.add(R.drawable.menu04);
         arrMenu.add(R.drawable.menu05);
-    }*/
-}}
+    }
+}
