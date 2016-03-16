@@ -10,7 +10,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ViewFlipper;
 
-import com.demo01.pdkpro.bong_bay.Game.MainGame;
 import com.demo01.pdkpro.bong_bay.R;
 
 import java.util.ArrayList;
@@ -20,30 +19,34 @@ public class MainControl extends AppCompatActivity {
 
     private ViewFlipper viewFlipper;
     private float xOld;
+    private Intent selectMonsterScreen;
+    private Button btPlay,btIntoduce,btSetting;
     HashMap<Integer,ArrayList<Integer>> hashBacground; //chua giao dien cac component
     ArrayList<Integer> arrMenu ;
-    private Button playGame,introduce,heightScore;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_control);
 
-        playGame = (Button) findViewById(R.id.playGame);
-        introduce = (Button) findViewById(R.id.playGame);
-        heightScore = (Button) findViewById(R.id.heightScore);
+        selectMonsterScreen = new Intent(MainControl.this,SelectMonsterScreen.class);
 
-        playGame.setOnClickListener(new View.OnClickListener() {
+        //kích vào nut start
+        btPlay = (Button) findViewById(R.id.btPlay);
+        btPlay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent it2 = new Intent(MainControl.this,LeverScreen.class);
-                startActivity(it2);
+                btPlay.setBackgroundResource(R.drawable.ball4);
+                startActivity(selectMonsterScreen);
             }
         });
+
+        //kích vào nút introduce
+        btIntoduce = (Button) findViewById(R.id.btIntroduce);
+
     }
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-
         return  true;
     }
 
@@ -64,7 +67,7 @@ public class MainControl extends AppCompatActivity {
         super.onStop();
         //this.mainView.
     }
-
+/*
     private void createHashBackgroundAndIconGame(){
         this.hashBacground = new HashMap<>();
         //man 1
@@ -72,7 +75,7 @@ public class MainControl extends AppCompatActivity {
         arr1.add(R.drawable.map1);
         arr1.add(R.drawable.ball1);
         arr1.add(R.drawable.block1);
-        hashBacground.put(R.drawable.menu01,arr1);
+        hashBacground.put(R.drawable.monster01,arr1);
 
         //man 2
         ArrayList<Integer> arr2 = new ArrayList<>();
@@ -110,4 +113,5 @@ public class MainControl extends AppCompatActivity {
         arrMenu.add(R.drawable.menu04);
         arrMenu.add(R.drawable.menu05);
     }
+    */
 }
