@@ -38,7 +38,7 @@ public class Brick {
         side = 50;
         mSoundManage = new SoundManager();
         mSoundManage.initSounds(context);
-        mSoundManage.addSound(0, R.raw.collision_brick);
+        mSoundManage.addSound(0,R.raw.collision_brick);
     }
 
     public void init(int w, int h, MainGame view) {

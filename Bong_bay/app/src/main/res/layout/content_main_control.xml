@@ -12,29 +12,40 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:scaleType="fitXY"
-                android:src="@drawable/menu"/>
+                android:src="@drawable/screen_menu"/>
 
     <Button
         android:layout_width="200dp"
         android:layout_height="200dp"
-        android:background="@drawable/ball5"
+        android:background="@drawable/btn_play"
         android:gravity="center_vertical|center_horizontal"
-        android:id="@+id/btPlay"
+        android:id="@+id/btnPlay"
         android:layout_marginBottom="220dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:onClick="changeBtPlayBacground"
-        />
+        android:backgroundTint="@drawable/btn_playpress"
+        android:backgroundTintMode="src_over" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="introducec"
         android:id="@+id/btIntroduce"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_toLeftOf="@+id/btPlay"
-        android:layout_toStartOf="@+id/btPlay" />
+        android:background="@drawable/btn_info"
+        android:layout_marginBottom="16dp"
+        android:layout_marginLeft="16dp"
+        android:backgroundTint="@drawable/btn_infopress" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/btnHighScore"
+        android:background="@drawable/btn_highscore"
+        android:drawableTint="@drawable/btn_highscorepress"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_alignParentEnd="true" />
 
 </RelativeLayout>

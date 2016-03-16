@@ -28,7 +28,7 @@ public class MainGame extends View {
     public MainGame(Context context){
         super(context);
         //set hình nền
-        this.setBackgroundResource(R.drawable.map3);
+        this.setBackgroundResource(R.drawable.map_01);
     }
 
     public void setArrGUI(ArrayList arrGUI) {
@@ -76,10 +76,10 @@ public class MainGame extends View {
         brick = new Brick(this.getContext());
         brick.init(w,h,this);
         //tao nguoi choi
-        player = new Player(100, 40, R.drawable.pink, w/3, (h-h/8), this.getContext());
+        player = new Player(240, 80, R.drawable.pink, w/3, (h-h/10), this.getContext());
         player.setView(this);
         //tao may
-        ai = new AI(100, 40, R.drawable.star, w/2,(h/10), this.getContext());
+        ai = new AI(240, 80, R.drawable.star, w/2,(h/10), this.getContext());
         ai.setView(this);
     }
     @Override

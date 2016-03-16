@@ -19,8 +19,8 @@ public class MainControl extends AppCompatActivity {
 
     private ViewFlipper viewFlipper;
     private float xOld;
-    private Intent selectMonsterScreen;
-    private Button btPlay,btIntoduce,btSetting;
+    private Intent selectMonsterScreen,introduceScreen,highScoreScreen;
+    private Button btnPlay,btIntoduce,btHighScore;
     HashMap<Integer,ArrayList<Integer>> hashBacground; //chua giao dien cac component
     ArrayList<Integer> arrMenu ;
     @Override
@@ -29,20 +29,42 @@ public class MainControl extends AppCompatActivity {
         setContentView(R.layout.activity_main_control);
 
         selectMonsterScreen = new Intent(MainControl.this,SelectMonsterScreen.class);
+        introduceScreen = new Intent(MainControl.this,IntroduceScreen.class);
+        highScoreScreen = new Intent(MainControl.this,HighScoreScreen.class);
 
         //kích vào nut start
-        btPlay = (Button) findViewById(R.id.btPlay);
-        btPlay.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                btPlay.setBackgroundResource(R.drawable.ball4);
-                startActivity(selectMonsterScreen);
-            }
-        });
+        btnPlay = (Button) findViewById(R.id.btnPlay);
+        handerClickButton(btnPlay,R.drawable.btn_play,R.drawable.btn_playpress,selectMonsterScreen);
 
         //kích vào nút introduce
         btIntoduce = (Button) findViewById(R.id.btIntroduce);
+        handerClickButton(btIntoduce,R.drawable.btn_info,R.drawable.btn_infopress,introduceScreen);
 
+        //kích vào nút highScore
+        btHighScore = (Button) findViewById(R.id.btnHighScore);
+        handerClickButton(btHighScore,R.drawable.btn_highscore,R.drawable.btn_highscorepress,highScoreScreen);
+    }
+
+    private void handerClickButton(final Button button, final int btnBackground, final int btnBacgroundPress, final Intent nextScreen){
+        button.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                processerClickButton(button, event,btnBackground, btnBacgroundPress, nextScreen);
+                return false;
+            }
+        });
+    }
+
+    private final void processerClickButton(Button button,MotionEvent event,int btnBackground,int btnBacgroundPress,Intent nextScreen){
+        switch (event.getAction()){
+            case MotionEvent.ACTION_DOWN:
+                button.setBackgroundResource(btnBacgroundPress);
+                break;
+            case MotionEvent.ACTION_UP:
+                button.setBackgroundResource(btnBackground);
+                startActivity(nextScreen);
+                break;
+        }
     }
 
     @Override

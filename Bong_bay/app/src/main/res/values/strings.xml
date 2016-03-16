@@ -3,4 +3,6 @@
     <string name="action_settings">Settings</string>
     <string name="title_activity_game_play">GamePlay</string>
     <string name="title_activity_map_screen">MapScreen</string>
+    <string name="title_activity_introduce_screen">IntroduceScreen</string>
+    <string name="title_activity_high_score_screen">HighScoreScreen</string>
 </resources>
