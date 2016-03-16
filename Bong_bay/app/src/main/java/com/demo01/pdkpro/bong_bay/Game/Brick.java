@@ -38,7 +38,7 @@ public class Brick {
         side = 50;
         mSoundManage = new SoundManager();
         mSoundManage.initSounds(context);
-        mSoundManage.addSound(0, R.raw.chambrick);
+        mSoundManage.addSound(0, R.raw.collision_brick);
     }
 
     public void init(int w, int h, MainGame view) {
@@ -101,7 +101,7 @@ public class Brick {
     public void setSong(Context context){
         mSoundManage = new SoundManager();
         mSoundManage.initSounds(context);
-        mSoundManage.addSound(0, R.raw.chambrick);
+        mSoundManage.addSound(0, R.raw.collision_brick);
     }
     // phát nhạc
     public void playSong(){

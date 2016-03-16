@@ -5,7 +5,7 @@ import android.content.Context;
 /**
  * Created by CO on 3/1/2016.
  */
-public class AI extends ObjectFather {
+public class AI extends Components {
     public AI(int sizeX,int sizeY,int Image, float x, float y, Context context){
         super(sizeX,sizeY,Image,x,y,context);
     }

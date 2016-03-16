@@ -5,7 +5,7 @@ import android.content.Context;
 /**
  * Created by pdkpro on 01/03/2016.
  */
-public class Ball extends ObjectFather{
+public class Ball extends Components{
     float velocityX,velocityY;
     int speed =10;
     SoundManager mSoundManager;
@@ -55,13 +55,13 @@ public class Ball extends ObjectFather{
             processingCollisonPaddle(player, -1f);
 
         } else {
-            processingCollisonPaddle(ai,1f);
+            processingCollisonPaddle(ai, 1f);
         }
     }
 
-    private void processingCollisonPaddle(ObjectFather obj, float flagNavigation){
-        if(isCollisonPaddle(obj.getX(),obj.getY(), obj.getSizeX(), obj.getSizeY(),
-            this.getX(), this.getY(), this.getSizeX(),this.getSizeY()))
+    private void processingCollisonPaddle(Components obj, float flagNavigation){
+        if(isCollisonPaddle(obj.getX(), obj.getY(), obj.getSizeX(), obj.getSizeY(),
+                this.getX(), this.getY(), this.getSizeX(), this.getSizeY()))
         {
             float temp = obj.getY() + flagNavigation*obj.getSizeY();
             this.setY(temp);
