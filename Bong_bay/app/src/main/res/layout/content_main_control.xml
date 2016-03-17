@@ -48,4 +48,24 @@
         android:layout_marginRight="16dp"
         android:layout_alignParentEnd="true" />
 
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/btnSound"
+        android:background="@drawable/btn_sound"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/btnMusic"
+        android:background="@drawable/btn_music"
+        android:layout_alignParentTop="true"
+        android:layout_toLeftOf="@+id/btnSound"
+        android:layout_toStartOf="@+id/btnSound" />
+
 </RelativeLayout>

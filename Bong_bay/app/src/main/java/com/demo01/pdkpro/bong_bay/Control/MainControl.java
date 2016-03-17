@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ViewFlipper;
 
+import com.demo01.pdkpro.bong_bay.GameSaveInform.Constants;
 import com.demo01.pdkpro.bong_bay.R;
 
 import java.util.ArrayList;
@@ -20,7 +21,7 @@ public class MainControl extends AppCompatActivity {
     private ViewFlipper viewFlipper;
     private float xOld;
     private Intent selectMonsterScreen,introduceScreen,highScoreScreen;
-    private Button btnPlay,btIntoduce,btHighScore;
+    private Button btnPlay,btIntoduce,btHighScore,btnSound,btnMusic;
     HashMap<Integer,ArrayList<Integer>> hashBacground; //chua giao dien cac component
     ArrayList<Integer> arrMenu ;
     @Override
@@ -34,31 +35,73 @@ public class MainControl extends AppCompatActivity {
 
         //kích vào nut start
         btnPlay = (Button) findViewById(R.id.btnPlay);
-        handerClickButton(btnPlay,R.drawable.btn_play,R.drawable.btn_playpress,selectMonsterScreen);
+        handleClickButton(btnPlay, R.drawable.btn_play, R.drawable.btn_playpress, selectMonsterScreen);
 
         //kích vào nút introduce
         btIntoduce = (Button) findViewById(R.id.btIntroduce);
-        handerClickButton(btIntoduce,R.drawable.btn_info,R.drawable.btn_infopress,introduceScreen);
+        handleClickButton(btIntoduce, R.drawable.btn_info, R.drawable.btn_infopress, introduceScreen);
 
         //kích vào nút highScore
         btHighScore = (Button) findViewById(R.id.btnHighScore);
-        handerClickButton(btHighScore,R.drawable.btn_highscore,R.drawable.btn_highscorepress,highScoreScreen);
+        handleClickButton(btHighScore, R.drawable.btn_highscore, R.drawable.btn_highscorepress, highScoreScreen);
+
+        //kich vao nut sound
+        btnSound = (Button) findViewById(R.id.btnSound);
+        btnSound.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (Constants.soundStatus) {
+                    btnSound.setBackgroundResource(R.drawable.btn_sound_stop);
+                } else {
+                    btnSound.setBackgroundResource(R.drawable.btn_sound);
+                }
+                Constants.soundStatus = !Constants.soundStatus;
+            }
+        });
+
+        //kich vao nut sound
+        btnMusic = (Button) findViewById(R.id.btnMusic);
+        btnMusic.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(Constants.musicStatus){
+                    btnMusic.setBackgroundResource(R.drawable.btn_music_stop);
+                }else{
+                    btnMusic.setBackgroundResource(R.drawable.btn_music);
+                }
+                Constants.musicStatus = !Constants.musicStatus;
+            }
+        });
+
     }
 
-    private void handerClickButton(final Button button, final int btnBackground, final int btnBacgroundPress, final Intent nextScreen){
+    private void handleClickButton(final Button button, final int btnBackground, final int btnBacgroundPress, final Intent nextScreen){
         button.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
-                processerClickButton(button, event,btnBackground, btnBacgroundPress, nextScreen);
+                processerClickButtonMoveScreen(button, event, btnBackground, btnBacgroundPress, nextScreen);
                 return false;
             }
         });
     }
 
-    private final void processerClickButton(Button button,MotionEvent event,int btnBackground,int btnBacgroundPress,Intent nextScreen){
+
+
+    private final void processerClickButtonMoveScreen(Button button,MotionEvent event,int btnBackground,int btnBacgroundPress,Intent nextScreen){
         switch (event.getAction()){
             case MotionEvent.ACTION_DOWN:
                 button.setBackgroundResource(btnBacgroundPress);
+                break;
+            case MotionEvent.ACTION_UP:
+                button.setBackgroundResource(btnBackground);
+                startActivity(nextScreen);
+                break;
+        }
+    }
+
+    private final void processerClickButtonNoMoveScreen(Button button,MotionEvent event,int btnBackground,int btnBacgroundPress,Intent nextScreen){
+        switch (event.getAction()){
+            case MotionEvent.ACTION_DOWN:
                 break;
             case MotionEvent.ACTION_UP:
                 button.setBackgroundResource(btnBackground);
