@@ -9,7 +9,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="com.demo01.pdkpro.bong_bay.Control.IntroduceScreen"
+    tools:context="com.demo01.pdkpro.bong_bay.ScreenControl.IntroduceScreen"
     tools:showIn="@layout/activity_introduce_screen">
 
     

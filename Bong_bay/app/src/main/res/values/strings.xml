@@ -5,4 +5,5 @@
     <string name="title_activity_map_screen">MapScreen</string>
     <string name="title_activity_introduce_screen">IntroduceScreen</string>
     <string name="title_activity_high_score_screen">HighScoreScreen</string>
+    <string name="title_activity_result_screen">ResultScreen</string>
 </resources>

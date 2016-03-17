@@ -5,11 +5,11 @@
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
-        android:supportsRtl="true"
         android:largeHeap="true"
+        android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".Control.MainControl"
+            android:name=".ScreenControl.MainControl"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -18,19 +18,22 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Control.SelectMonsterScreen"
+            android:name=".ScreenControl.SelectMonsterScreen"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".Control.GamePlayScreen"
+            android:name=".ScreenControl.GamePlayScreen"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".Control.MapScreen"
+            android:name=".ScreenControl.MapScreen"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".Control.IntroduceScreen"
+            android:name=".ScreenControl.IntroduceScreen"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".Control.HighScoreScreen"
+            android:name=".ScreenControl.HighScoreScreen"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ScreenControl.ResultScreen"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 

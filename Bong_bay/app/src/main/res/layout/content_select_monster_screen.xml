@@ -6,7 +6,8 @@
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:showIn="@layout/activity_select_monster_screen"
-    tools:context=".Control.SelectMonsterScreen">
+    tools:context=".ScreenControl.SelectMonsterScreen">
+
 
     <ViewFlipper
         android:layout_width="fill_parent"
@@ -23,8 +24,17 @@
                 android:layout_height="fill_parent"
                 android:scaleType="fitXY"
                 android:id="@+id/iamgeView01"
-                android:src="@drawable/select_pink"
+                android:src="@drawable/select_frog"
                 />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/btnStart1"
+                android:background="@drawable/btn_start"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="80dp"
+                android:layout_centerHorizontal="true" />
 
         </RelativeLayout>
 
@@ -39,7 +49,14 @@
                 android:scaleType="fitXY"
                 android:src="@drawable/select_wood"
                 />
-
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/btnStart2"
+                android:background="@drawable/btn_start"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="80dp"
+                android:layout_centerHorizontal="true" />
         </RelativeLayout>
 
         //monster 3
@@ -51,9 +68,16 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:scaleType="fitXY"
-                android:src="@drawable/select_star"
+                android:src="@drawable/select_pink"
                 />
-
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/btnStart3"
+                android:background="@drawable/btn_start"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="80dp"
+                android:layout_centerHorizontal="true" />
         </RelativeLayout>
 
         //monster 4
@@ -65,9 +89,16 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:scaleType="fitXY"
-                android:src="@drawable/select_robo"
+                android:src="@drawable/select_star"
                 />
-
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/btnStart4"
+                android:background="@drawable/btn_start"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="80dp"
+                android:layout_centerHorizontal="true" />
         </RelativeLayout>
 
         //monster 5
@@ -79,8 +110,17 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:scaleType="fitXY"
-                android:src="@drawable/select_frog"
+                android:src="@drawable/select_robo"
                 />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/btnStart5"
+                android:background="@drawable/btn_start"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="80dp"
+                android:layout_centerHorizontal="true" />
 
         </RelativeLayout>
 
