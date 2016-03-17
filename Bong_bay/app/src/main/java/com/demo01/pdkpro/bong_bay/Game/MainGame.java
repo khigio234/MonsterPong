@@ -1,11 +1,11 @@
 package com.demo01.pdkpro.bong_bay.Game;
 
-import android.content.Context;
 import android.graphics.Canvas;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ViewFlipper;
 
+import com.demo01.pdkpro.bong_bay.Control.GamePlayScreen;
 import com.demo01.pdkpro.bong_bay.R;
 
 import java.util.ArrayList;
@@ -24,11 +24,12 @@ public class MainGame extends View {
     //cờ nhấn giữ
     ArrayList arrGUI = new ArrayList();
     ViewFlipper viewFlipper;
-
-    public MainGame(Context context){
-        super(context);
+    GamePlayScreen gamePlayScreen;
+    public MainGame(GamePlayScreen gamePlayScreen){
+        super(gamePlayScreen.getBaseContext());
         //set hình nền
         this.setBackgroundResource(R.drawable.map_01);
+        this.gamePlayScreen = gamePlayScreen;
     }
 
     public void setArrGUI(ArrayList arrGUI) {
@@ -45,16 +46,32 @@ public class MainGame extends View {
     }
     @Override
     public void onDraw(Canvas canvas){
-            drawAll(canvas);
-            update();
-            try {
-                Thread.sleep(30);
-            }catch (Exception e){
-                e.printStackTrace();
+            if(isAiWin()||isPlayerWin()){
+                gamePlayScreen.nextScreen();
+            }else {
+                drawAll(canvas);
+                update();
+                try {
+                    Thread.sleep(30);
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+                invalidate();
             }
-            invalidate();
-
     }
+
+    private boolean isAiWin(){
+        if(ball.getY() > this.getHeight())
+            return true;
+        return false;
+    }
+
+    private boolean isPlayerWin(){
+        if(ball.getY() < 0)
+            return true;
+        return false;
+    }
+
     public void update(){
         ai.update(ball,this);
         ball.update(player, ai);
