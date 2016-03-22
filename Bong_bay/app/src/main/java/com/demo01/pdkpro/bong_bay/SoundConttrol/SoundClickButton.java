@@ -15,7 +15,7 @@ public class SoundClickButton {
         song = MediaPlayer.create(context, R.raw.sound_click);
     }
     public void startSong(){
-        if(Constants.soundStatus){
+        if(Constants.isSound){
             song.start();
         }
     }

@@ -8,9 +8,9 @@ import java.util.ArrayList;
  * Created by pdkpro on 17/03/2016.
  */
 public class Constants {
-    public static boolean result = true;
-    public static boolean soundStatus = true;
-    public static boolean musicStatus = true;
+    public static boolean isWin = true;
+    public static boolean isSound = true;
+    public static boolean isMusic = true;
     public static int monsterComputer = 0;
     public static int monsterPlayer = 0;
     public static int lever = 2;
