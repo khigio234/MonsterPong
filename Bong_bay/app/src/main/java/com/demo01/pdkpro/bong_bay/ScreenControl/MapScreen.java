@@ -18,7 +18,7 @@ public class MapScreen extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_map_screen);
         mapLevel = (ImageView) findViewById(R.id.mapLevel);
-        mapLevel.setImageResource(Constants.arrMap.get(Constants.lever));
+        mapLevel.setImageResource(Constants.ARR_MAP.get(Constants.level));
         gamePlayScreen = new Intent(MapScreen.this,GamePlayScreen.class);
     }
 

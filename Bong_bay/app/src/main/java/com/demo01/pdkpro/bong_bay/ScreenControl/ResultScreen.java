@@ -38,12 +38,12 @@ public class ResultScreen extends AppCompatActivity {
 
     private void showResult(){
         if(Constants.isWin){
-            if(Constants.lever!=5) {
-                Constants.lever = Constants.lever+1;
+            if(Constants.level!=5) {
+                Constants.level = Constants.level+1;
             }
-            setImageResult(R.drawable.win,Constants.arrMonster.get(Constants.monsterPlayer));
+            setImageResult(R.drawable.win,Constants.ARR_MONSTER.get(Constants.monsterPlayer));
         }else {
-            setImageResult(R.drawable.lose,Constants.arrMonsterLose.get(Constants.monsterPlayer));
+            setImageResult(R.drawable.lose,Constants.ARR_MONSTER_LOSE.get(Constants.monsterPlayer));
         }
     }
 
