@@ -6,9 +6,8 @@ import android.content.Context;
  * Created by pdkpro on 01/03/2016.
  */
 public class Ball extends Components{
-    float velocityX,velocityY;
-    int speed =10;
-    SoundColissionManage mSoundColissionManage;
+    private float velocityX,velocityY;
+    private int speed =10;
 
     public Ball(){
 
@@ -41,25 +40,31 @@ public class Ball extends Components{
 
     public void update(Player player, Computer computer) {
 
-        // cap nhat vi tri cua ball
         this.setX(this.getX() + velocityX);
         this.setY(this.getY() + velocityY);
-        // kiem tra banh co ra ngoai man hinh hay k, neu co thi bat nguoc lai
-        if (0 > this.getX() || this.getX() + this.getSizeX() > this.getView().getWidth()) {
-            float offset = velocityX < 0 ? 0 - this.getX() : this.getView().getWidth() - (this.getX() + this.getSizeX());
-            this.setX(this.getX() + 2 * offset);
-            velocityX *= -1;
-            playSong(1);
-        }
-        if (velocityY > 0) {
-            processingCollisonPaddle(player, -1f);
 
+        if(isCollissionWall())
+            processingCollisionWall();
+
+        if (velocityY > 0) {
+            processingCollisionPaddle(player, -1f);
         } else {
-            processingCollisonPaddle(computer, 1f);
+            processingCollisionPaddle(computer, 1f);
         }
     }
 
-    private void processingCollisonPaddle(Components obj, float flagNavigation){
+    private boolean isCollissionWall(){
+        return (0 > this.getX() || this.getX() + this.getSizeX() > this.getView().getWidth());
+    }
+
+    private void processingCollisionWall(){
+        float offset = velocityX < 0 ? 0 - this.getX() : this.getView().getWidth() - (this.getX() + this.getSizeX());
+        this.setX(this.getX() + 2 * offset);
+        velocityX *= -1;
+        playSong(1);
+    }
+
+    private void processingCollisionPaddle(Components obj, float flagNavigation){
         if(isCollisonPaddle(obj.getX(), obj.getY(), obj.getSizeX(), obj.getSizeY(),
                 this.getX(), this.getY(), this.getSizeX(), this.getSizeY()))
         {

@@ -14,14 +14,13 @@ import com.demo01.pdkpro.bong_bay.R;
 public class Components {
     private float x,y;
     private int Image;
-    private int sizeX,sizeY;//cai này dùng để ddingj dạng khi vẽ Bitmap
-    private Bitmap ObjectModify;//trái hình trong bitmap dc dùng để chỉnh sửa
-    private Bitmap ObjectDraw;//trái hình trong bitmap dc dùng để vẽ
+    private int sizeX,sizeY;    //cai này dùng để định dạng khi vẽ Bitmap
+    private Bitmap ObjectModify;// hình trong bitmap dc dùng để chỉnh sửa
+    private Bitmap ObjectDraw;  // hình trong bitmap dc dùng để vẽ
     private float xMax, xMin = 0, yMax, yMin=0;
     private MainGame view;
     private boolean isLife = true;
-    int songFile;
-    SoundColissionManage mSoundColissionManage;
+    private SoundColission souColission;
     public Components(){
 
     }
@@ -38,13 +37,13 @@ public class Components {
         setSoundColissionManage(context);
     }
     public void setSoundColissionManage(Context context) {
-        mSoundColissionManage = new SoundColissionManage();
-        mSoundColissionManage.initSounds(context);
-        mSoundColissionManage.addSound(0, R.raw.collision_paddle);
-        mSoundColissionManage.addSound(1, R.raw.collision_wall);
-        mSoundColissionManage.addSound(2,R.raw.collision_brick);
-        mSoundColissionManage.addSound(3, R.raw.lose);
-        mSoundColissionManage.addSound(4, R.raw.win);
+        souColission = new SoundColission();
+        souColission.initSounds(context);
+        souColission.addSound(0, R.raw.collision_paddle);
+        souColission.addSound(1, R.raw.collision_wall);
+        souColission.addSound(2,R.raw.collision_brick);
+        souColission.addSound(3, R.raw.lose);
+        souColission.addSound(4, R.raw.win);
     }
     public boolean isLife() {
         return isLife;
@@ -172,7 +171,7 @@ public class Components {
     }
 
     public void playSong(int index){
-        this.mSoundColissionManage.playSound(index);
+        this.souColission.playSound(index);
     }
 }
 

@@ -17,7 +17,7 @@ public class Brick {
     private ArrayList<Float> brickX ;
     private ArrayList<Float> brickY;
     private int side;
-    SoundColissionManage mSoundManage;
+    private SoundColission souColission;
 
     public Bitmap getBrick(int i){
         return brick.get(i);
@@ -36,9 +36,9 @@ public class Brick {
         brickX = new ArrayList<Float>();
         brickY = new ArrayList<Float>();
         side = 60;
-        mSoundManage = new SoundColissionManage();
-        mSoundManage.initSounds(context);
-        mSoundManage.addSound(0,R.raw.collision_brick);
+        souColission = new SoundColission();
+        souColission.initSounds(context);
+        souColission.addSound(0,R.raw.collision_brick);
     }
 
     public void init(int w, int h, MainGame view) {
@@ -99,12 +99,12 @@ public class Brick {
     }
     //taoj nhac
     public void setSong(Context context){
-        mSoundManage = new SoundColissionManage();
-        mSoundManage.initSounds(context);
-        mSoundManage.addSound(0, R.raw.collision_brick);
+        souColission = new SoundColission();
+        souColission.initSounds(context);
+        souColission.addSound(0, R.raw.collision_brick);
     }
     // phát nhạc
     public void playSong(){
-        this.mSoundManage.playSound(0);
+        this.souColission.playSound(0);
     }
 }
