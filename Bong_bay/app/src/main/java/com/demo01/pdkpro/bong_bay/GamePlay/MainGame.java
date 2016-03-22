@@ -3,47 +3,29 @@ package com.demo01.pdkpro.bong_bay.GamePlay;
 import android.graphics.Canvas;
 import android.view.MotionEvent;
 import android.view.View;
-import android.widget.ViewFlipper;
 
-import com.demo01.pdkpro.bong_bay.ScreenControl.GamePlayScreen;
 import com.demo01.pdkpro.bong_bay.GameSaveInform.Constants;
 import com.demo01.pdkpro.bong_bay.R;
-
-import java.util.ArrayList;
+import com.demo01.pdkpro.bong_bay.ScreenControl.GamePlayScreen;
 
 /**
  * Created by pdkpro on 01/03/2016.
  */
 public class MainGame extends View {
-    //tạo 1 trái banh
-    Ball ball;
-    float x =50,y=700;
-    float velocityX = 10,speedY = 10;
-    Brick brick;
-    Player player;
-    Computer computer;
-    //cờ nhấn giữ
-    ArrayList arrGUI = new ArrayList();
-    ViewFlipper viewFlipper;
-    GamePlayScreen gamePlayScreen;
+    private Ball ball;
+    private float x =50,y=700; //vi tri trai banh luc moi vao
+    private float velocityX = 10,velocityY = 10;//van toc bay trai banh
+    private Brick brick;
+    private Player player;
+    private Computer computer;
+    private GamePlayScreen gamePlayScreen;
+
     public MainGame(GamePlayScreen gamePlayScreen){
         super(gamePlayScreen.getBaseContext());
+
         //set hình nền
         this.setBackgroundResource(Constants.ARR_BACKGROUND.get(Constants.level));
         this.gamePlayScreen = gamePlayScreen;
-    }
-
-    public void setArrGUI(ArrayList arrGUI) {
-        this.arrGUI = arrGUI;
-    }
-
-    public void setViewFlipper(ViewFlipper viewFlipper) {
-        this.viewFlipper = viewFlipper;
-    }
-    public void rePlay(){
-        if(this.ball!=null){
-            this.ball.setLife(true);
-        }
     }
     @Override
     public void onDraw(Canvas canvas){
@@ -62,7 +44,7 @@ public class MainGame extends View {
                         e.printStackTrace();
                     }
                     invalidate();
-                }
+            }
     }
 
     private boolean isAiWin(){
@@ -92,7 +74,7 @@ public class MainGame extends View {
 
     public void init(int w,int h){
         // tao bong
-        ball = new Ball(60,60,R.drawable.ball2,x,y,this.getContext(),velocityX,speedY);
+        ball = new Ball(60,60,R.drawable.ball2,x,y,this.getContext(),velocityX,velocityY);
         ball.setView(this);
         // tao brick
         brick = new Brick(this.getContext());

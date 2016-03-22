@@ -10,8 +10,7 @@ import com.demo01.pdkpro.bong_bay.R;
  * Created by CO on 1/22/2016.
  */
 public class Player extends Components{
-    int songFile;
-    SoundColissionManage mSoundColissionManage;
+    private SoundColission souColission;
 
     public Player(int sizeX,int sizeY,int Image, float x, float y, Context context){
         super(sizeX,sizeY,Image,x,y,context);
@@ -40,12 +39,12 @@ public class Player extends Components{
     }
     //taoj nhac
     public void setSong(Context context){
-        mSoundColissionManage = new SoundColissionManage();
-        mSoundColissionManage.initSounds(context);
-        mSoundColissionManage.addSound(0, R.raw.collision_brick);
+        souColission = new SoundColission();
+        souColission.initSounds(context);
+        souColission.addSound(0, R.raw.collision_brick);
     }
     // phát nhạc
     public void PlaySong(){
-        this.mSoundColissionManage.playSound(0);
+        this.souColission.playSound(0);
     }
 }
