@@ -28,7 +28,16 @@ public class ResultScreen extends AppCompatActivity {
         imageResultBackground = (ImageView) findViewById(R.id.imageResultBackGround);
         imageResultMonster = (ImageView) findViewById(R.id.imageResultMonster);
 
-        if(Constants.result){
+        showResult();
+
+        btnReplay = (Button) findViewById(R.id.btnReplay);
+        btnNext = (Button) findViewById(R.id.btnNext);
+        handleClickButton(btnNext,R.drawable.btn_next,R.drawable.btn_nextpress);
+        handleClickButton(btnReplay,R.drawable.btn_replay,R.drawable.btn_replaypress);
+    }
+
+    private void showResult(){
+        if(Constants.isWin){
             if(Constants.lever!=5) {
                 Constants.lever = Constants.lever+1;
             }
@@ -36,11 +45,6 @@ public class ResultScreen extends AppCompatActivity {
         }else {
             setImageResult(R.drawable.lose,Constants.arrMonsterLose.get(Constants.monsterPlayer));
         }
-
-        btnReplay = (Button) findViewById(R.id.btnReplay);
-        btnNext = (Button) findViewById(R.id.btnNext);
-        handleClickButton(btnNext,R.drawable.btn_next,R.drawable.btn_nextpress);
-        handleClickButton(btnReplay,R.drawable.btn_replay,R.drawable.btn_replaypress);
     }
 
     private void handleClickButton(final Button button,final int background,final int backgroundPress){

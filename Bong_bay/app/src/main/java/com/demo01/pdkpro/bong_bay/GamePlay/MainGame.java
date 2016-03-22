@@ -49,10 +49,10 @@ public class MainGame extends View {
     public void onDraw(Canvas canvas){
             if(isAiWin()){
                 gamePlayScreen.resultScreen();
-                Constants.result = false;
+                Constants.isWin = false;
             }else if(isPlayerWin()) {
                 gamePlayScreen.resultScreen();
-                Constants.result = true;
+                Constants.isWin = true;
                 } else{
                     drawAll(canvas);
                     update();

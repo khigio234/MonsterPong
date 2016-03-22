@@ -85,12 +85,12 @@ public class MainControl extends AppCompatActivity {
         btnSound.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (Constants.soundStatus) {
+                if (Constants.isSound) {
                     btnSound.setBackgroundResource(R.drawable.btn_soundban);
                 } else {
                     btnSound.setBackgroundResource(R.drawable.btn_sound);
                 }
-                Constants.soundStatus = !Constants.soundStatus;
+                Constants.isSound = !Constants.isSound;
                 soundClickButton.startSong();
             }
         });
@@ -100,7 +100,7 @@ public class MainControl extends AppCompatActivity {
         btnMusic.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(Constants.musicStatus){
+                if(Constants.isMusic){
                     btnMusic.setBackgroundResource(R.drawable.btn_musicban);
                     backGroundMusic.pause();
                 }else{
@@ -108,7 +108,7 @@ public class MainControl extends AppCompatActivity {
                     backGroundMusic.start();
                 }
                 soundClickButton.startSong();
-                Constants.musicStatus = !Constants.musicStatus;
+                Constants.isMusic = !Constants.isMusic;
             }
         });
     }
