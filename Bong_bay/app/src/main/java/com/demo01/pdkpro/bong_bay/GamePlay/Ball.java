@@ -8,6 +8,7 @@ import android.content.Context;
 public class Ball extends Components{
     private float velocityX,velocityY;
     private int speed =10;
+    private boolean isPlayer =  true;
 
     public Ball(){
 
@@ -37,6 +38,9 @@ public class Ball extends Components{
     private boolean isCollisonPaddle(float ax, float ay, float aw, float ah, float bx, float by,float bw, float bh){
         return ax < bx+bw && ay < by+bh && bx < ax+aw && by < ay+ah;
     }
+    public boolean isPlayerCollissionPaddle(){
+        return this.isPlayer;
+    }
 
     public void update(Player player, Computer computer) {
 
@@ -48,8 +52,10 @@ public class Ball extends Components{
 
         if (velocityY > 0) {
             processingCollisionPaddle(player, -1f);
+            isPlayer = false;
         } else {
             processingCollisionPaddle(computer, 1f);
+            isPlayer = true;
         }
     }
 

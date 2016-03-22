@@ -1,6 +1,8 @@
 package com.demo01.pdkpro.bong_bay.GamePlay;
 
 import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
 import android.view.MotionEvent;
 import android.view.View;
 
@@ -19,13 +21,14 @@ public class MainGame extends View {
     private Player player;
     private Computer computer;
     private GamePlayScreen gamePlayScreen;
+    private Paint paint = new Paint();
 
     public MainGame(GamePlayScreen gamePlayScreen){
         super(gamePlayScreen.getBaseContext());
-
-        //set hình nền
         this.setBackgroundResource(Constants.ARR_BACKGROUND.get(Constants.level));
         this.gamePlayScreen = gamePlayScreen;
+        paint.setTextSize(30);
+        paint.setColor(Color.RED);
     }
     @Override
     public void onDraw(Canvas canvas){
@@ -35,6 +38,7 @@ public class MainGame extends View {
             }else if(isPlayerWin()) {
                 gamePlayScreen.resultScreen();
                 Constants.isWin = true;
+                Constants.currentScore = computerCurrentScore();
                 } else{
                     drawAll(canvas);
                     update();
@@ -43,8 +47,17 @@ public class MainGame extends View {
                     }catch (Exception e){
                         e.printStackTrace();
                     }
-                    invalidate();
+                invalidate();
             }
+    }
+
+    public int computerCurrentScore(){
+        int computerScore = Constants.currentScore+(Constants.stageScore*(Constants.level+1) - brick.getCountBrickRemove()*Constants.SCORE);
+        return (computerScore > 0)? computerScore : 0;
+    }
+
+    public void drawScore(Canvas canvas){
+
     }
 
     private boolean isAiWin(){
@@ -70,6 +83,7 @@ public class MainGame extends View {
         player.draw(canvas);
         computer.draw(canvas);
         brick.draw(canvas);
+        canvas.drawText("Score : "+computerCurrentScore(),10,50,paint);
     }
 
     public void init(int w,int h){
