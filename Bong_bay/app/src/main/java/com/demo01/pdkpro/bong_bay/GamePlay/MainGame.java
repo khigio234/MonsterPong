@@ -14,7 +14,7 @@ import com.demo01.pdkpro.bong_bay.ScreenControl.GamePlayScreen;
 public class MainGame extends View {
     private Ball ball;
     private float x =50,y=700; //vi tri trai banh luc moi vao
-    private float velocityX = 10,speedY = 10;//van toc bay trai banh
+    private float velocityX = 10,velocityY = 10;//van toc bay trai banh
     private Brick brick;
     private Player player;
     private Computer computer;
@@ -72,7 +72,7 @@ public class MainGame extends View {
 
     public void init(int w,int h){
         // tao bong
-        ball = new Ball(60,60,R.drawable.ball2,x,y,this.getContext(),velocityX,speedY);
+        ball = new Ball(60,60,R.drawable.ball2,x,y,this.getContext(),velocityX,velocityY);
         ball.setView(this);
         // tao brick
         brick = new Brick(this.getContext());
