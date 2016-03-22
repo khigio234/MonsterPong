@@ -11,7 +11,7 @@ import android.widget.ViewFlipper;
 
 import com.demo01.pdkpro.bong_bay.GameSaveInform.Constants;
 import com.demo01.pdkpro.bong_bay.R;
-import com.demo01.pdkpro.bong_bay.SoundClickButton.SoundClickButton;
+import com.demo01.pdkpro.bong_bay.SoundConttrol.SoundClickButton;
 
 public class SelectMonsterScreen extends AppCompatActivity {
 

@@ -8,7 +8,7 @@ import android.content.Context;
 public class Ball extends Components{
     float velocityX,velocityY;
     int speed =10;
-    SoundManager mSoundManager;
+    SoundColissionManage mSoundColissionManage;
 
     public Ball(){
 

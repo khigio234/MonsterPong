@@ -21,7 +21,7 @@ public class Components {
     private MainGame view;
     private boolean isLife = true;
     int songFile;
-    SoundManager mSoundManager;
+    SoundColissionManage mSoundColissionManage;
     public Components(){
 
     }
@@ -35,14 +35,16 @@ public class Components {
         this.Image = Image;
         this.x = x;
         this.y = y;
-
-        mSoundManager = new SoundManager();
-        mSoundManager.initSounds(context);
-        mSoundManager.addSound(0,R.raw.collision_paddle);
-        mSoundManager.addSound(1, R.raw.collision_wall);
-        mSoundManager.addSound(2,R.raw.collision_brick);
-        mSoundManager.addSound(3, R.raw.lose);
-        mSoundManager.addSound(4, R.raw.win);
+        setSoundColissionManage(context);
+    }
+    public void setSoundColissionManage(Context context) {
+        mSoundColissionManage = new SoundColissionManage();
+        mSoundColissionManage.initSounds(context);
+        mSoundColissionManage.addSound(0, R.raw.collision_paddle);
+        mSoundColissionManage.addSound(1, R.raw.collision_wall);
+        mSoundColissionManage.addSound(2,R.raw.collision_brick);
+        mSoundColissionManage.addSound(3, R.raw.lose);
+        mSoundColissionManage.addSound(4, R.raw.win);
     }
     public boolean isLife() {
         return isLife;
@@ -170,7 +172,7 @@ public class Components {
     }
 
     public void playSong(int index){
-        this.mSoundManager.playSound(index);
+        this.mSoundColissionManage.playSound(index);
     }
 }
 
