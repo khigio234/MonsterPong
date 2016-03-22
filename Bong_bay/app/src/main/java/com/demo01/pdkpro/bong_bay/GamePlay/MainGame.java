@@ -22,7 +22,9 @@ public class MainGame extends View {
 
     public MainGame(GamePlayScreen gamePlayScreen){
         super(gamePlayScreen.getBaseContext());
-        this.setBackgroundResource(Constants.arrBackGround.get(Constants.lever));
+
+        //set hình nền
+        this.setBackgroundResource(Constants.ARR_BACKGROUND.get(Constants.level));
         this.gamePlayScreen = gamePlayScreen;
     }
     @Override
@@ -78,10 +80,10 @@ public class MainGame extends View {
         brick = new Brick(this.getContext());
         brick.init(w,h,this);
         //tao nguoi choi
-        player = new Player(180, 60, Constants.arrMonster.get(Constants.monsterPlayer), w/3, (h-h/10), this.getContext());
+        player = new Player(180, 60, Constants.ARR_MONSTER.get(Constants.monsterPlayer), w/3, (h-h/10), this.getContext());
         player.setView(this);
         //tao may
-        computer = new Computer(180, 60, Constants.arrMonster.get(Constants.lever), w/2,h/18, this.getContext());
+        computer = new Computer(180, 60, Constants.ARR_MONSTER.get(Constants.level), w/2,h/18, this.getContext());
         computer.setView(this);
     }
     @Override
