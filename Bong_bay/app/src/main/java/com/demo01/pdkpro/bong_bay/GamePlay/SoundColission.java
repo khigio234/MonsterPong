@@ -1,23 +1,21 @@
 package com.demo01.pdkpro.bong_bay.GamePlay;
 
-/**
- * Created by pdkpro on 04/03/2016.
- */
-
 import android.content.Context;
 import android.media.AudioManager;
 import android.media.SoundPool;
 
 import java.util.HashMap;
 
-public class SoundManager {
-
+/**
+ * Created by pdkpro on 22/03/2016.
+ */
+public class SoundColission {
     private SoundPool mSoundPool;
     private HashMap<Integer, Integer> mSoundPoolMap;
     private AudioManager mAudioManager;
     private Context mContext;
 
-    public SoundManager() {
+    public SoundColission() {
 
     }
 
@@ -41,4 +39,3 @@ public class SoundManager {
                 1, 0, 1f);
     }
 }
-
