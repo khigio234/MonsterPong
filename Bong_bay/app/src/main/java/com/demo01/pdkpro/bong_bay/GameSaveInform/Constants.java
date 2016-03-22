@@ -13,6 +13,10 @@ public class Constants {
     public static boolean isMusic = true;
     public static int monsterPlayer = 0;
     public static int level = 0;
+    public final static int SCORE = 40;
+    public static int highScore = 0;
+    public static int currentScore = 0;
+    public static int stageScore = 500;
 
     public static ArrayList<Integer> ARR_MONSTER = new ArrayList<Integer>();
     public static ArrayList<Integer> ARR_MONSTER_LOSE = new ArrayList<Integer>();
