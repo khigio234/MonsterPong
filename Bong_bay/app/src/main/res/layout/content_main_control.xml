@@ -29,7 +29,7 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/btIntroduce"
+        android:id="@+id/btnIntroduce"
         android:layout_alignParentBottom="true"
         android:background="@drawable/btn_info"
         android:layout_marginBottom="16dp"

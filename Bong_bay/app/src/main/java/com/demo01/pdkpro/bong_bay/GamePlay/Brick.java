@@ -17,7 +17,7 @@ public class Brick {
     private ArrayList<Float> brickX ;
     private ArrayList<Float> brickY;
     private int side;
-    SoundManager mSoundManage;
+    SoundColissionManage mSoundManage;
 
     public Bitmap getBrick(int i){
         return brick.get(i);
@@ -36,7 +36,7 @@ public class Brick {
         brickX = new ArrayList<Float>();
         brickY = new ArrayList<Float>();
         side = 60;
-        mSoundManage = new SoundManager();
+        mSoundManage = new SoundColissionManage();
         mSoundManage.initSounds(context);
         mSoundManage.addSound(0,R.raw.collision_brick);
     }
@@ -99,7 +99,7 @@ public class Brick {
     }
     //taoj nhac
     public void setSong(Context context){
-        mSoundManage = new SoundManager();
+        mSoundManage = new SoundColissionManage();
         mSoundManage.initSounds(context);
         mSoundManage.addSound(0, R.raw.collision_brick);
     }
