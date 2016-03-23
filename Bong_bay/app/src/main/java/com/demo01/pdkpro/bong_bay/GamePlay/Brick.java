@@ -19,6 +19,8 @@ public class Brick {
     private int side;
     private SoundColission souColission;
     private int countBrickRemove = 0;
+    private Bitmap bomb;
+    private Bitmap bombResize;
 
     public Bitmap getBrick(int i){
         return brick.get(i);
@@ -32,30 +34,29 @@ public class Brick {
         return brickY.get(i);
     }
 
-    public Brick(Context context){
+    public void setBrick(){
+        brick.add(bombResize);
+    }
+
+    public void setBrickX(float f){
+        brickX.add(f);
+    }
+
+    public void setBrickY(float f){
+        brickY.add(f);
+    }
+
+    public Brick(Context context, MainGame view){
         brick = new ArrayList<Bitmap>();
         brickX = new ArrayList<Float>();
         brickY = new ArrayList<Float>();
         side = 60;
         souColission = new SoundColission();
         souColission.initSounds(context);
-        souColission.addSound(0,R.raw.collision_brick);
-    }
+        souColission.addSound(0, R.raw.collision_brick);
+        bomb = BitmapFactory.decodeResource(view.getResources(), R.drawable.block3);
+        bombResize = Bitmap.createScaledBitmap(bomb, (int) side, (int) side, false);
 
-    public void init(int w, int h, MainGame view) {
-
-        Bitmap bomb = BitmapFactory.decodeResource(view.getResources(), R.drawable.block3);
-        Bitmap bombResize = Bitmap.createScaledBitmap(bomb, (int) side, (int) side, false);
-        for (int j = 3; j < 7; j++) {
-            float i = 3;
-            while ((i+3) * 50 < (w - 50)) {
-                float x = i++ * 50;
-                float y = 2 * h / 3 - j * 50;
-                brick.add(bombResize);
-                brickX.add(x);
-                brickY.add(y);
-            }
-        }
     }
 
     public void draw(Canvas canvas){

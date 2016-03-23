@@ -24,6 +24,18 @@ public class Impediment {
         components_2.setView(view);
     }
 
+    public void initBrick(int w, int h, Brick br){
+        float temp = h - h/10;
+        float ax[] = {100, 163, w-163, w-226, 100, w-163, 100, w-163, 100, 163, w-163, w-226};
+        float ay[] = {h/18+200, h/18+200, h/18+200, h/18+200, h/18+263, h/18+263,
+                temp-263, temp-263, temp-200, temp-200, temp-200, temp-200};
+        for (int i = 0; i<ax.length; i++){
+            br.setBrick();
+            br.setBrickX(ax[i]);
+            br.setBrickY(ay[i]);
+        }
+    }
+
     public void update(Ball ball){
         t++;
         //if(t > 72) t=0;
