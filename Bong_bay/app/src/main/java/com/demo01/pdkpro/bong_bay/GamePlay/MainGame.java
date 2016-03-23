@@ -79,7 +79,7 @@ public class MainGame extends View {
         computer.update(ball,this);
         ball.update(player, computer);
         impediment.update(ball);
-        //brick.update(ball);
+        brick.update(ball);
     }
 
     public void drawAll(Canvas canvas){
@@ -89,7 +89,7 @@ public class MainGame extends View {
 
         //brick.draw(canvas);
         impediment.draw(canvas);
-        //brick.draw(canvas);
+        brick.draw(canvas);
         canvas.drawText("Score : "+computerCurrentScore(),10,50,paint);
 
     }
@@ -99,17 +99,18 @@ public class MainGame extends View {
         ball = new Ball(60,60,R.drawable.ball2,x,y,this.getContext(),velocityX,velocityY);
         ball.setView(this);
         // tao brick
-        brick = new Brick(this.getContext());
-        brick.init(w, h, this);
+        brick = new Brick(this.getContext(),this);
+        //brick.init(w, h, this);
         //tao nguoi choi
         player = new Player(180, 60, Constants.ARR_MONSTER.get(Constants.monsterPlayer), w/3, (h-h/10), this.getContext());
         player.setView(this);
         //tao may
-        computer = new Computer(180, 60, Constants.ARR_MONSTER.get(Constants.level), w/2,h/18, this.getContext());
+        computer = new Computer(180, 60, Constants.ARR_MONSTER.get(Constants.level), w/2, h/18, this.getContext());
         computer.setView(this);
 
         // tao chuong ngai vat
         impediment = new Impediment(this.getContext(), this);
+        impediment.initBrick(w,h,brick);
     }
     @Override
     public boolean onTouchEvent(MotionEvent event){
