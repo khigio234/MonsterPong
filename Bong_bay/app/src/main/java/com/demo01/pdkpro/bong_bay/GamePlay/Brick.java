@@ -18,6 +18,7 @@ public class Brick {
     private ArrayList<Float> brickY;
     private int side;
     private SoundColission souColission;
+    private int countBrickRemove = 0;
 
     public Bitmap getBrick(int i){
         return brick.get(i);
@@ -72,16 +73,14 @@ public class Brick {
             if(isCollison(tempX,ball.getY(),brickX.get(i), brickY.get(i),side)
                     || isCollison(tempX,tempYBottom,brickX.get(i),brickY.get(i),side)){
                 ball.setvelocityY(-ball.getvelocityY());
-                remove(i);
-            }
-            else {
-
+                remove(i,ball);
+            }else {
                 float tempY = ball.getY() + ball.getSizeY() / 2;
                 float tempXLeft = ball.getX() + ball.getSizeX();
                 if (isCollison(ball.getX(), tempY, brickX.get(i), brickY.get(i), side)
                         || isCollison(tempXLeft, tempY, brickX.get(i), brickY.get(i), side)) {
                     ball.setvelocityX(-ball.getvelocityX());
-                    remove(i);
+                    remove(i,ball);
                 }
             }
         }
@@ -91,7 +90,9 @@ public class Brick {
         return bx < ax && ax < bx+bs && by < ay && ay < by+bs;
     }
 
-    public void remove(int i){
+    public void remove(int i,Ball ball){
+        if(ball.isPlayerCollissionPaddle())
+            increaseCountBrickRemove();
         brick.remove(i);
         brickX.remove(i);
         brickY.remove(i);
@@ -106,5 +107,12 @@ public class Brick {
     // phát nhạc
     public void playSong(){
         this.souColission.playSound(0);
+    }
+
+    public void increaseCountBrickRemove(){
+        this.countBrickRemove += 1;
+    }
+    public int getCountBrickRemove(){
+        return this.countBrickRemove;
     }
 }
