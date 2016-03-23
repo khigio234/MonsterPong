@@ -9,6 +9,7 @@ public class Ball extends Components{
     private float velocityX,velocityY;
     private int speed =10;
 
+
     public Ball(){
 
     }
@@ -32,6 +33,14 @@ public class Ball extends Components{
 
     public float getvelocityY() {
         return velocityY;
+    }
+
+    public void setSpeed(int speed){
+        this.speed = speed;
+    }
+
+    public int getSpeed(){
+        return this.speed;
     }
 
     private boolean isCollisonPaddle(float ax, float ay, float aw, float ah, float bx, float by,float bw, float bh){
